@@ -556,25 +556,21 @@
         color: #00ffbf;
     }
 
-    /* ICON STYLES */
+    /* ICON STYLES (Default: Goal 🚀) */
     .roadmap-list li::before {
         position: absolute;
         left: 0;
         font-size: 22px;
         line-height: 1.6;
         transition: color 0.3s;
+        content: '🚀'; /* Default for goals */
+        text-shadow: 0 0 8px rgba(255, 204, 0, 0.9); 
     }
     
-    /* ✅ - COMPLETED TASK */
-    .roadmap-list li:first-child::before {
+    /* ✅ - COMPLETED TASK (Override for specific items) */
+    .roadmap-list .completed-step::before {
         content: '✅'; 
         text-shadow: 0 0 10px #00ffbf;
-    }
-    
-    /* 🚀 - GOALS */
-    .roadmap-list li:not(:first-child)::before {
-        content: '🚀';
-        text-shadow: 0 0 8px rgba(255, 204, 0, 0.9); 
     }
 
     /* ----------------------------------
@@ -962,7 +958,7 @@
 
                     <h3 style="color: #00ffbf;">🌲 PHASE 1: THE GREAT SLOTH STRETCH (AWAKENING)</h3>
                     <ul style="list-style: none; padding-left: 0; line-height: 2;">
-                        <li><b>Development Complete:</b> Website and launch strategy created. $SLT token developed, logo prepared, and initial promotions released.</li>
+                        <li class="completed-step"><b>Development Complete:</b> Website and launch strategy created. $SLT token developed, logo prepared, and initial promotions released.</li>
                         
                         <li><b>Blum Deployment:</b> We found our first chill spot on <span class="highlight">Blum</span>. Target reached when our <span class="highlight">1,500 TON</span> pillow is full!</li>
                         <li><b>Reaching for Ston.fi:</b> Once the Blum den is complete, we'll slowly swing towards the <a href="https://app.ston.fi/swap" target="_blank" class="highlight">Ston.fi</a> tree. We wait until we're ready for the crowds.</li>
