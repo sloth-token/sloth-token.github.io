@@ -50,57 +50,16 @@ body {
     box-shadow: 0 0 35px rgba(0, 255, 191, 0.9); 
     z-index: 60;
     margin-top: 15px; 
-    margin-bottom: 5px; 
+    margin-bottom: 15px; 
     transition: transform 0.3s;
 }
 .logo:hover {
     transform: scale(1.1); 
 }
 
-/* ----------------------------------
-// LANGUAGE SWITCHER (GÖRSEL DÜZELTME)
------------------------------------ */
-.language-switcher {
-    margin: 10px auto 10px auto; 
-    text-align: center;
-    position: relative;
-    z-index: 65; 
-}
-
-.language-switcher a {
-    text-decoration: none;
-    margin: 0 10px; 
-    display: inline-block;
-    line-height: 0; /* Boşluk sorununu gidermek için */
-}
-
-.language-switcher a img {
-    /* Bayrak görselleri için boyut ve stil */
-    width: 32px; 
-    height: 32px;
-    border-radius: 50%; /* Bayrağı daire şeklinde göstermek için */
-    object-fit: cover;
-    opacity: 0.8;
-    transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
-    vertical-align: middle;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Hafif bir çerçeve */
-}
-
-.language-switcher a:hover img {
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-.language-switcher a.active img {
-    opacity: 1;
-    transform: scale(1.1);
-    /* Aktif olan bayrağa yeşil parlama ekle */
-    box-shadow: 0 0 8px #00ffbf, 0 0 5px rgba(0, 255, 191, 0.5); 
-}
-
 
 /* ----------------------------------
-// NAVIGATION (DEĞİŞMEDİ)
+// NAVIGATION
 ----------------------------------- */
 nav {
     position: fixed;
@@ -134,7 +93,7 @@ nav a:hover {
 }
 
 /* ----------------------------------
-// SECTION STYLES (DEĞİŞMEDİ)
+// SECTION STYLES
 ----------------------------------- */
 .hero {
     text-align: center;
@@ -174,10 +133,10 @@ nav a:hover {
     font-weight: 400; 
 }
 
-/* CONTRAC ADDRESS STYLES (DEĞİŞMEDİ) */
+/* CONTRAC ADDRESS STYLES (DESKTOP) */
 .contract-container {
     max-width: 550px;
-    margin: 30px auto 0px auto; 
+    margin: 30px auto 0px auto; /* Sosyal ikonlar için alttan boşluk azaltıldı */
     position: relative; 
 }
 .contract-label {
@@ -235,32 +194,34 @@ nav a:hover {
 }
 
 /* ----------------------------------
-// SOCIAL ICONS (DEĞİŞMEDİ)
+// SOCIAL ICONS (YENİ EKLENDİ)
 ----------------------------------- */
 .social-icons {
-    margin: 20px auto; 
+    margin: 20px auto; /* Kontrat adresinden boşluk */
     text-align: center;
+    /* Kontrat kutusuyla aynı genişlikte tutmak için (mobil uyumlu) */
     max-width: 550px; 
 }
 
 .social-icons a {
-    color: #00ffbf; 
-    font-size: 28px; 
-    margin: 0 15px; 
+    color: #00ffbf; /* Sloth teması rengi */
+    font-size: 28px; /* Simge boyutu */
+    margin: 0 15px; /* Simgeler arası boşluk */
     transition: color 0.3s, transform 0.3s;
     display: inline-block;
 }
 
 .social-icons a:hover {
-    color: #4dfff7; 
+    color: #4dfff7; /* Hafif bir parlama efekti */
     transform: scale(1.2) translateY(-2px);
     text-shadow: 0 0 10px #00ffbf;
 }
 /* ----------------------------------
-// BUTTONS (DEĞİŞMEDİ)
+// BUTTONS
 ----------------------------------- */
 .btns {
     margin-top: 35px;
+    /* Buton altındaki boşluk ÇOK FAZLA ARTIRILDI (70px) */
     margin-bottom: 70px; 
     display: flex;
     flex-wrap: wrap;
@@ -288,12 +249,14 @@ nav a:hover {
     transform: translateY(-2px);
 }
 
-/* SECTION BASICS (DEĞİŞMEDİ) */
+/* SECTION BASICS */
 .section-content {
+    /* Bölüm dolgusu SIFIRLANDI */
     padding: 0px 0; 
     max-width: 100%;
     margin: 0 auto;
     text-align: center;
+    /* ANCHOR FIX: Kaydırma sırasında menü yüksekliği kadar boşluk bırakır */
     scroll-margin-top: 100px; 
 }
 
@@ -313,13 +276,16 @@ nav a:hover {
     color: #00ffbf; 
 }
 
-/* Manifesto Section (DEĞİŞMEDİ) */
+/* Manifesto Section */
 .manifesto-section {
+    /* Bölüm dolgusu SIFIRLANDI */
     padding: 0px 0; 
     text-align: center;
+    /* ANCHOR FIX: Kaydırma sırasında menü yüksekliği kadar boşluk bırakır */
     scroll-margin-top: 100px; 
 }
 
+/* Manifesto Header */
 .manifesto-section h2 {
     font-size: 40px; 
     font-weight: 800;
@@ -329,6 +295,7 @@ nav a:hover {
     text-align: center; 
 }
 
+/* Manifesto Content Area */
 .manifesto-content-area {
     display: flex;
     align-items: flex-start; 
@@ -339,6 +306,7 @@ nav a:hover {
     padding: 0 20px; 
 }
 
+/* VIDEO SIZE AND AREA */
 .manifesto-video {
     flex-basis: 300px; 
     flex-shrink: 0;
@@ -350,12 +318,14 @@ nav a:hover {
 }
 
 
+/* Manifesto Text Block */
 .manifesto-text {
     flex-grow: 1; 
     max-width: 600px; 
     text-align: left; 
 }
 
+/* Manifesto h3 */
 .manifesto-text h3 {
     margin-top: 0; 
     font-size: 28px; 
@@ -368,6 +338,7 @@ nav a:hover {
     font-weight: 600;
 }
 
+/* YENİ: Vurgulanan metin (Tırnak işaretli kısımlar) */
 .creative-highlight {
     font-weight: 600; 
     color: #4dfff7; 
@@ -382,7 +353,7 @@ nav a:hover {
 }
 
 /* ----------------------------------
-// HOW TO BUY (DEĞİŞMEDİ)
+// HOW TO BUY (Ordered List)
 ----------------------------------- */
 .buy-steps {
     max-width: 800px;
@@ -439,7 +410,7 @@ nav a:hover {
 }
 
 /* ----------------------------------
-// ROADMAP (DEĞİŞMEDİ)
+// ROADMAP
 ----------------------------------- */
 .roadmap-container {
     max-width: 1000px; 
@@ -519,7 +490,7 @@ nav a:hover {
 }
 
 /* ----------------------------------
-// FAQ (DEĞİŞMEDİ)
+// FAQ (FREQUENTLY ASKED QUESTIONS)
 ----------------------------------- */
 .faq-container {
     max-width: 800px;
@@ -576,6 +547,7 @@ nav a:hover {
     font-weight: 300; 
 }
 
+/* YENİ: FAQ içindeki creative-highlight stilini tanımla */
 .faq-answer p .creative-highlight {
     font-weight: 600; 
     color: #4dfff7; 
@@ -583,7 +555,7 @@ nav a:hover {
 
 
 /* ----------------------------------
-// FOOTER (DEĞİŞMEDİ)
+// FOOTER
 ----------------------------------- */
 footer {
     padding: 40px 20px;
@@ -643,6 +615,7 @@ footer p {
     /* BUTTONS MOBILE LAYOUT */
     .btns {
         gap: 8px; 
+        /* Buton altındaki boşluk ÇOK FAZLA ARTIRILDI (70px) */
         margin-bottom: 70px; 
     }
     .btn {
@@ -652,9 +625,10 @@ footer p {
         min-width: 100px; 
     }
 
-    /* Section Padding Mobile */
+    /* Section Padding Mobile (Bölüm dolgusu SIFIRLANDI) */
     .section-content, .manifesto-section {
         padding: 0px 0; 
+        /* Mobil menü de 60-70px civarı olduğu için 80px yeterli olur */
         scroll-margin-top: 80px; 
     }
     .content-wrapper {
@@ -700,12 +674,6 @@ footer p {
         height: 120px;
     }
 
-    /* LANGUAGE SWITCHER MOBILE STYLES */
-    .language-switcher a img {
-        width: 28px; 
-        height: 28px;
-    }
-
     /* CONTRACT ADDRESS MOBILE STYLES */
     .contract-container {
         max-width: 95%; 
@@ -727,7 +695,7 @@ footer p {
     /* SOCIAL ICONS MOBILE STYLES */
     .social-icons {
          margin: 15px auto;
-         max-width: 95%; 
+         max-width: 95%; /* Mobil genişlik ayarı */
     }
     .social-icons a {
         font-size: 24px; 
