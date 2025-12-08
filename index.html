@@ -8,14 +8,6 @@
 <meta name="keywords" content="SLOTH, $SLT, TON, TON Blockchain, Meme Token, Sloth Token, Crypto">
 
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
-<link rel="preload" href="styles.css" as="style">
-<link rel="preload" href="scripts.js" as="script">
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
 <link rel="stylesheet" href="styles.css"> 
@@ -39,7 +31,10 @@
     
     <h1>$SLT</h1>
 
-    <img src="slttokenlogo.jpeg" class="logo" alt="Sloth Token Logo">
+    <picture>
+        <source srcset="slttokenlogo.avif" type="image/avif">
+        <img src="slttokenlogo.jpeg" class="logo" alt="Sloth Token Logo" loading="lazy">
+    </picture>
     
     <h2 class="sub-h1">SLOTH TOKEN</h2>
     
@@ -55,19 +50,6 @@
         <a href="https://x.com/sloth_token0" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
         <a href="#" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
         <a href="https://github.com/sloth-token" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-    </div>
-    
-    <div class="language-selector">
-        <button class="lang-button" onclick="toggleLangMenu(event)">
-            Change Language <i class="fas fa-globe"></i>
-        </button>
-        <div class="lang-menu" id="langMenu">
-            <a href="index.html">English</a>
-            <a href="ru.html">Русский</a>
-            <a href="az.html">Azərbaycanca</a>
-            <a href="es.html">Español</a>
-            <a href="tr.html">Türkçe</a>
-        </div>
     </div>
     
     <p>
@@ -89,7 +71,11 @@
         
         <div class="manifesto-content-area">
             <div class="manifesto-video">
-                <video src="slothtoken.mp4" autoplay loop muted playsinline poster="slothtoken-poster.webp"></video>
+                <video controls muted autoplay loop playsinline poster="slothtoken-poster.webp" loading="lazy">
+                    <source src="slothtoken.webm" type="video/webm">
+                    <source src="slothtoken.mp4" type="video/mp4">
+                    <p>Your browser does not support the video tag.</p>
+                </video>
             </div>
 
             <div class="manifesto-text">
@@ -119,13 +105,23 @@
             
             <div class="roadmap-content-wrapper">
                 <div class="roadmap-image-wrapper">
-                    <img src="Roadmap.png" alt="Sloth Roadmap Image 1" loading="lazy" />
-                    <img src="Roadmap2.png" alt="Sloth Roadmap Image 2" loading="lazy" /> 
+                    <picture>
+                        <source srcset="Roadmap.avif" type="image/avif">
+                        <img src="Roadmap.png" alt="Sloth Roadmap Image 1" loading="lazy" /> 
+                    </picture>
+                    
+                    <picture>
+                        <source srcset="Roadmap2.avif" type="image/avif">
+                        <img src="Roadmap2.png" alt="Sloth Roadmap Image 2" loading="lazy" />
+                    </picture>
                 </div>
 
                 <div class="roadmap-list">
                     
-                    <img src="Roadmap.png" alt="Sloth Roadmap Image 1 Mobile" class="roadmap-image-mobile" loading="lazy">
+                    <picture>
+                        <source srcset="Roadmap.avif" type="image/avif">
+                        <img src="Roadmap.png" alt="Sloth Roadmap Image 1 Mobile" class="roadmap-image-mobile" loading="lazy">
+                    </picture>
 
                     <h3 style="color: #00ffbf;">🌲 PHASE 1: THE GREAT SLOTH STRETCH (AWAKENING)</h3>
                     <ul style="list-style: none; padding-left: 0; line-height: 2;">
@@ -136,7 +132,10 @@
                         <li><b>Zen Shield Activation:</b> Smart Market Maker Bots (MM Bots) are deployed to prevent price volatility. They keep the vibes calm.</li>
                     </ul>
                     
-                    <img src="Roadmap2.png" alt="Sloth Roadmap Image 2 Mobile" class="roadmap-image-mobile" loading="lazy">
+                    <picture>
+                        <source srcset="Roadmap2.avif" type="image/avif">
+                        <img src="Roadmap2.png" alt="Sloth Roadmap Image 2 Mobile" class="roadmap-image-mobile" loading="lazy">
+                    </picture>
 
                     <h3 style="color: #00ffbf; margin-top: 50px;">🚀 PHASE 2: CLIMBING THE CANOPY (ASCENT)</h3>
                     <p style="text-align: left; opacity: 0.8;">Climbing this tree takes time, but we are in no hurry. We are aiming for the thickest, most comfortable branches at the top:</p>
@@ -241,7 +240,7 @@
     <p>THE SLOW MOVEMENT IS THE STRONGEST MOVEMENT.</p>
 </footer>
 
-<script src="scripts.js" defer></script>
+<script src="scripts.js"></script>
 
 </body>
 </html>
