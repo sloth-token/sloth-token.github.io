@@ -12,6 +12,87 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
 <link rel="stylesheet" href="styles.css"> 
 
+<style>
+/* ----------------------------------
+// LANGUAGE SELECTOR STYLES (YENİ EKLENDİ)
+----------------------------------- */
+.language-selector {
+    position: absolute;
+    /* Hero bölümüne göre konumlama */
+    top: 100px; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40; 
+    text-align: center;
+}
+
+.lang-button {
+    background-color: rgba(0, 255, 191, 0.15); /* Açık yeşil ton */
+    color: #00ffbf; /* Vurgu rengi */
+    border: 2px solid #00ffbf;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(5px);
+}
+
+.lang-button:hover {
+    background-color: rgba(0, 255, 191, 0.3);
+    box-shadow: 0 0 15px #00ffbf;
+    transform: translateY(-2px);
+}
+
+.lang-menu {
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    background-color: rgba(3, 10, 18, 0.98); /* Koyu arka plan */
+    border: 1px solid #00ffbf;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 255, 191, 0.5);
+    overflow: hidden;
+    min-width: 150px;
+    display: none; /* Başlangıçta gizli */
+    z-index: 100;
+    text-align: left;
+}
+
+.lang-menu a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    transition: background-color 0.2s, color 0.2s;
+    border-bottom: 1px solid rgba(0, 255, 191, 0.1);
+}
+
+.lang-menu a:last-child {
+    border-bottom: none;
+}
+
+.lang-menu a:hover {
+    background-color: #00ffbf;
+    color: #030a12; /* Hover'da koyu metin */
+}
+/* Mobile adjustment for language selector */
+@media (max-width: 850px) {
+    .language-selector {
+        top: 80px; 
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -29,6 +110,18 @@
 
 <section class="hero" id="home">
     
+    <div class="language-selector">
+        <button class="lang-button" onclick="toggleLangMenu()">
+            Change Language <i class="fas fa-globe"></i>
+        </button>
+        <div class="lang-menu" id="langMenu">
+            <a href="index.html">English</a>
+            <a href="ru.html">Русский</a>
+            <a href="az.html">Azərbaycanca</a>
+            <a href="es.html">Español</a>
+            <a href="tr.html">Türkçe</a>
+        </div>
+    </div>
     <h1>$SLT</h1>
 
     <img src="slttokenlogo.jpeg" class="logo" alt="Sloth Token Logo">
@@ -221,6 +314,98 @@
 </footer>
 
 <script src="scripts.js"></script>
+<script>
+    // --- LANGUAGE SELECTOR TOGGLE FUNCTION (YENİ EKLENDİ) ---
+
+    // Function to toggle the language menu
+    function toggleLangMenu() {
+        const menu = document.getElementById('langMenu');
+        // Toggle display between 'block' (visible) and 'none' (hidden)
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Close the menu if clicked outside
+    document.addEventListener('click', (event) => {
+        const selector = document.querySelector('.language-selector');
+        const menu = document.getElementById('langMenu');
+        // If the menu is open and the click is NOT inside the language selector
+        if (menu.style.display === 'block' && !selector.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+    });
+
+    // --- MEVCUT JS KODU (UYGULANAN İLK DÜZENLEMEDEN) ---
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // --- TELİF HAKKI YILINI OTOMATİK GÜNCELLEME İŞLEVİ ---
+        const startYear = 2025;
+        const currentYear = new Date().getFullYear();
+        const copyrightElement = document.getElementById('copyrightYear');
+
+        if (copyrightElement) {
+            let yearText = startYear;
+            if (currentYear > startYear) {
+                // Başlangıç yılı 2025'ten büyükse, aralığı göster
+                yearText = `${startYear} - ${currentYear}`;
+            }
+            
+            // Telif hakkı metnini güncelle
+            copyrightElement.innerHTML = `&copy; ${yearText} SLOTH TOKEN. ALL RIGHTS RESERVED.`;
+        }
+
+        // --- KONTRA ADRESİ KOPYALAMA İŞLEVİ ---
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const contractAddress = document.getElementById('contractAddress').textContent;
+            const copyButton = document.getElementById('copyButton');
+            
+            // Kontrat adresini panoya kopyala
+            navigator.clipboard.writeText(contractAddress).then(() => {
+                const originalText = copyButton.textContent;
+                copyButton.textContent = 'COPIED!';
+                copyButton.style.backgroundColor = '#4dfff7'; 
+
+                // 1.5 saniye sonra orijinal metne dön
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                    copyButton.style.backgroundColor = '#00ffbf'; 
+                }, 1500);
+
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+            });
+        });
+
+        // --- FAQ Accordion işlevi (eğer scripts.js yüklü değilse yedek) ---
+        // Eğer bu kod scripts.js'de varsa burada tekrar çalışacaktır. 
+        // Bu, tek dosya çıktı için güvenlik amaçlı tutulmuştur.
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Diğerlerini kapat
+                faqItems.forEach(i => {
+                    if (i !== item && i.classList.contains('active')) {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    }
+                });
+
+                // Tıklananı aç/kapat
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                } else {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = null;
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
