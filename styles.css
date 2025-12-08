@@ -1,364 +1,314 @@
-/* ----------------------------------
-// GLOBAL STYLES & ANIMATION ENHANCEMENTS
------------------------------------ */
+/* ======================== */
+/* 1. Reset and Base Styles */
+/* ======================== */
 :root {
-    --bg-color: #030a12;
-    --primary-color: #00ffbf; /* Tembel Hayvan Yeşili/Mavi-Yeşil */
-    --secondary-color: #4dfff7; /* Daha Parlak Mavi-Yeşil (Vurgu/Hover) */
-    --text-color: #fff;
-    --highlight-text: #f7ff00; /* creative-highlight için Sarı */
-    --accent-color: #0c1825; /* Kutular/Konteynerler için Koyu Arka Plan */
+    --color-primary: #00ffbf; /* Sloth Green */
+    --color-secondary: #007bff; /* Blue for contrast/highlights */
+    --color-background-dark: #0f1013;
+    --color-text-light: #ffffff;
+    --color-text-fade: #a0a0a0;
+    --font-family-main: 'Poppins', sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    font-family: var(--font-family-main);
     line-height: 1.6;
-    overflow-x: hidden; 
+    overflow-x: hidden;
+    position: relative;
+    padding-top: 80px; /* Navigasyon için boşluk */
 }
 
 a {
-    color: var(--primary-color);
+    color: var(--color-primary);
     text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--secondary-color);
-}
-
-h1, h2, h3 {
-    font-weight: 800;
-    text-align: center;
-    color: var(--text-color);
-    margin-top: 0;
-}
-
-h1 {
-    font-size: 5em;
-    margin-bottom: 0.1em;
-    color: var(--primary-color);
-    text-shadow: 0 0 15px rgba(0, 255, 191, 0.5);
-}
-
-h2 {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 10px;
-    display: inline-block;
-    color: var(--secondary-color);
-}
-
-/* ----------------------------------
-// BACKGROUND GLOW EFFECTS (Arka Plan Işıltıları)
------------------------------------ */
-.glow1, .glow2 {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(150px); 
-    opacity: 0.4;
-    z-index: -1;
-}
-
-.glow1 {
-    top: -100px;
-    left: -100px;
-    width: 300px;
-    height: 300px;
-    background-color: var(--primary-color); 
-    animation: pulse1 10s infinite alternate;
-}
-
-.glow2 {
-    bottom: -100px;
-    right: -100px;
-    width: 400px;
-    height: 400px;
-    background-color: var(--secondary-color); 
-    animation: pulse2 12s infinite alternate;
-}
-
-@keyframes pulse1 {
-    0% { transform: scale(1); opacity: 0.3; }
-    100% { transform: scale(1.1); opacity: 0.5; }
-}
-
-@keyframes pulse2 {
-    0% { transform: scale(1); opacity: 0.3; }
-    100% { transform: scale(0.9); opacity: 0.5; }
-}
-
-/* ----------------------------------
-// NAVIGATION (Sabit ve Tek Satır Menü)
------------------------------------ */
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    background: rgba(3, 10, 18, 0.95); 
-    backdrop-filter: blur(5px);
-    padding: 15px 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(0, 255, 191, 0.2);
-    overflow-x: auto; /* Mobil cihazlarda yatay kaydırmaya izin verir */
-    white-space: nowrap; /* Menünün tek satırda kalmasını sağlar */
-}
-
-nav a {
-    color: var(--text-color);
-    text-transform: uppercase;
-    font-weight: 600;
-    padding: 5px 15px;
-    margin: 0 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-    font-size: 0.95em; 
-    flex-shrink: 0; /* Menü öğelerinin daralmasını engeller */
-}
-
-nav a:hover, nav a:focus {
-    background-color: rgba(0, 255, 191, 0.1);
-    color: var(--primary-color);
-}
-
-/* ----------------------------------
-// GENERAL SECTION STYLES (Genel Bölüm Stilleri)
------------------------------------ */
-.section-content, .hero, .manifesto-section {
-    padding: 100px 20px;
-    text-align: center;
-    min-height: 80vh; 
-    position: relative;
-    z-index: 1;
-}
-
-.content-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.creative-highlight {
-    color: var(--primary-color);
-    font-weight: 600;
-    text-shadow: 0 0 5px rgba(0, 255, 191, 0.5);
-}
-
-.highlight {
-    color: var(--secondary-color);
-    font-weight: 700;
-}
-
-
-/* ----------------------------------
-// HERO SECTION
------------------------------------ */
-.hero {
-    padding-top: 150px;
-    min-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    box-shadow: 0 0 30px rgba(0, 255, 191, 0.5);
-    transition: transform 0.5s ease;
-}
-
-.logo:hover {
-    transform: scale(1.05) rotate(5deg);
-}
-
-.sub-h1 {
-    font-size: 1.5em;
-    font-weight: 600;
-    color: var(--text-color);
-    margin: 0 0 40px 0;
-}
-
-.hero p {
-    max-width: 600px;
-    font-size: 1.1em;
-    margin: 30px 0;
-    line-height: 1.8;
-}
-
-/* Contract Address Box (Kontrat Adresi Kutusu) */
-.contract-container {
-    background-color: var(--accent-color);
-    padding: 15px 20px;
-    border-radius: 10px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
-    max-width: 90%;
-}
-
-.contract-label {
-    font-size: 0.8em;
-    color: var(--primary-color);
-    margin-bottom: 5px;
-    font-weight: 700;
-}
-
-.contract-box {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-.contract-address {
-    font-family: monospace;
-    color: var(--text-color);
-    background: #000;
-    padding: 8px 15px;
-    border-radius: 5px 0 0 5px;
-    overflow-x: scroll; /* Adres mobil cihazlarda taşarsa yatay kaydırma sağlar */
-    white-space: nowrap;
-    flex-grow: 1;
-    max-width: 250px;
-}
-
-.copy-btn {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    font-weight: 700;
-    border-radius: 0 5px 5px 0;
-    transition: background-color 0.3s;
-    flex-shrink: 0;
-}
-
-.copy-btn:hover {
-    background-color: var(--secondary-color);
-}
-
-
-/* Social Icons (Sosyal İkonlar) */
-.social-icons {
-    margin: 20px 0 30px 0;
-    font-size: 2em;
-}
-
-.social-icons a {
-    color: var(--text-color);
-    margin: 0 15px;
     transition: color 0.3s;
 }
 
-.social-icons a:hover {
-    color: var(--primary-color);
+a:hover {
+    color: #ffffff;
 }
 
-/* Language Selector (Dil Seçici) */
-.language-selector {
+/* Typography */
+h1 {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: var(--color-text-fade);
+}
+
+.creative-highlight {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.highlight {
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+
+/* ======================== */
+/* 2. Global Sections & Layout */
+/* ======================== */
+.section-content, .hero {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
-    display: inline-block;
-    margin-bottom: 20px;
+    z-index: 10;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ======================== */
+/* 3. Navigation Bar */
+/* ======================== */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(15, 16, 19, 0.95);
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    color: var(--color-text-light);
+    font-weight: 600;
+    margin: 0 15px;
+    padding: 5px 10px;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+/* ======================== */
+/* 4. Language Selector (FIXED) */
+/* ======================== */
+.language-selector {
+    position: fixed; /* Sabit Konumlandırma */
+    top: 20px; /* Sağ üst köşeye hizala */
+    right: 20px;
+    z-index: 101; /* Navigasyondan bile yukarıda */
 }
 
 .lang-button {
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    padding: 10px 20px;
+    background-color: var(--color-primary);
+    color: var(--color-background-dark);
+    border: none;
+    padding: 8px 12px;
     border-radius: 5px;
+    font-weight: 800;
     cursor: pointer;
-    font-weight: 600;
+    font-size: 1rem;
     transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
 .lang-button:hover {
-    background-color: rgba(0, 255, 191, 0.1);
+    background-color: #00e6a8;
 }
 
 .lang-menu {
     position: absolute;
     top: 100%;
     right: 0;
-    background-color: var(--accent-color);
-    border: 1px solid var(--primary-color);
-    border-radius: 5px;
+    background-color: var(--color-background-dark);
+    border: 1px solid var(--color-primary);
+    border-top: none;
+    border-radius: 0 0 5px 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    z-index: 10;
-    min-width: 150px;
-    display: none; /* Varsayılan olarak gizli */
-    overflow: hidden;
-    margin-top: 5px;
+    min-width: 120px;
+    display: none; /* JS ile açılıp kapanacak */
+    padding: 5px 0;
 }
 
-.lang-menu.show {
+.lang-menu.active {
     display: block;
 }
 
 .lang-menu a {
     display: block;
     padding: 10px 15px;
-    color: var(--text-color);
-    text-align: left;
+    color: var(--color-text-light);
+    text-align: right;
 }
 
 .lang-menu a:hover {
-    background-color: rgba(0, 255, 191, 0.2);
-    color: var(--primary-color);
+    background-color: rgba(0, 255, 191, 0.1);
+    color: var(--color-primary);
 }
 
-/* Call to Action Buttons (Harekete Geçirme Butonları) */
+.lang-menu a.active {
+    background-color: var(--color-primary);
+    color: var(--color-background-dark);
+    font-weight: 700;
+}
+
+
+/* ======================== */
+/* 5. Hero Section & Logo */
+/* ======================== */
+.hero {
+    text-align: center;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 0 30px rgba(0, 255, 191, 0.5);
+}
+
+.sub-h1 {
+    font-size: 2rem;
+    color: var(--color-text-light);
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+/* Contract Address */
+.contract-container {
+    margin: 30px auto;
+    max-width: 450px;
+}
+
+.contract-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.contract-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a2a2a;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+.contract-address {
+    font-family: monospace;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--color-text-light);
+}
+
+.copy-btn {
+    background-color: var(--color-primary);
+    color: var(--color-background-dark);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+}
+
+.copy-btn:hover {
+    background-color: #00e6a8;
+}
+
+/* Social Icons */
+.social-icons {
+    margin: 30px auto;
+    font-size: 2.5rem;
+}
+
+.social-icons a {
+    margin: 0 15px;
+    color: var(--color-text-light);
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--color-primary);
+    transform: scale(1.1);
+}
+
+/* Buy Buttons */
 .btns {
     margin-top: 40px;
     display: flex;
-    flex-wrap: wrap; 
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .btn {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
+    background-color: var(--color-primary);
+    color: var(--color-background-dark);
     padding: 15px 30px;
-    border-radius: 8px;
+    border-radius: 50px;
     font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 191, 0.4);
 }
 
 .btn:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 5px 20px rgba(77, 255, 247, 0.7);
+    background-color: #00e6a8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 255, 191, 0.6);
 }
 
-
-/* ----------------------------------
-// MANIFESTO SECTION
------------------------------------ */
+/* ======================== */
+/* 6. Manifesto Section */
+/* ======================== */
 .manifesto-section {
-    background-color: var(--accent-color);
+    background-color: #1a1b1e;
 }
 
 .manifesto-content-area {
@@ -371,176 +321,134 @@ nav a:hover, nav a:focus {
 .manifesto-video {
     flex: 1;
     min-width: 300px;
-    max-width: 50%;
 }
 
 .manifesto-video video {
     width: 100%;
+    max-width: 400px;
+    height: auto;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    border: 5px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(0, 255, 191, 0.4);
     display: block;
+    margin: 0 auto;
 }
 
 .manifesto-text {
-    flex: 1;
-    max-width: 50%;
+    flex: 2;
+    padding-left: 20px;
+    border-left: 3px solid var(--color-primary);
 }
 
-.manifesto-text p {
-    margin-bottom: 20px;
-    font-size: 1.1em;
-}
-
-.manifesto-text h3 {
-    text-align: left;
-    margin-top: 30px;
-    font-size: 1.8em;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
-    padding-bottom: 5px;
-}
-
-
-/* ----------------------------------
-// ROADMAP SECTION
------------------------------------ */
+/* ======================== */
+/* 7. Roadmap Section */
+/* ======================== */
 .roadmap-container {
-    text-align: left;
+    text-align: center;
 }
 
 .roadmap-content-wrapper {
     display: flex;
     gap: 40px;
-    align-items: flex-start;
+    text-align: left;
 }
 
 .roadmap-image-wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    min-width: 300px;
-    max-width: 400px;
+    gap: 30px;
+    align-items: center;
 }
 
 .roadmap-image-wrapper img {
     width: 100%;
+    max-width: 350px;
+    height: auto;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
-    border: 3px solid var(--primary-color);
 }
 
 .roadmap-list {
     flex: 2;
-}
-
-.roadmap-list h3 {
-    text-align: left;
-    margin-bottom: 15px;
-}
-
-.roadmap-list ul {
-    margin-top: 15px;
+    padding-top: 20px;
 }
 
 .roadmap-list li {
-    background-color: var(--accent-color);
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    border-left: 5px solid var(--secondary-color);
-    list-style: none;
+    padding: 10px 0;
+    border-bottom: 1px dashed #333;
 }
 
-/* Mobil cihazlarda sadece metin gösterimi için gizle */
 .roadmap-image-mobile {
-    display: none; 
+    display: none; /* Mobil cihazlarda gösterilecek */
+    margin: 30px auto;
 }
 
+/* ======================== */
+/* 8. How To Buy Section */
+/* ======================== */
+.buy-steps {
+    text-align: left;
+}
 
-/* ----------------------------------
-// HOW TO BUY SECTION (Nasıl Alınır Bölümü)
------------------------------------ */
 .buy-steps ol {
-    counter-reset: step-counter;
     list-style: none;
-    padding: 0;
-    margin-top: 40px;
+    counter-reset: step-counter;
+    padding-left: 0;
 }
 
 .buy-steps li {
     counter-increment: step-counter;
-    background-color: var(--accent-color);
-    border: 1px solid rgba(0, 255, 191, 0.2);
-    border-left: 8px solid var(--primary-color);
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    text-align: left;
+    margin-bottom: 40px;
     position: relative;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding-left: 70px;
 }
 
-.buy-steps li strong {
-    font-size: 1.5em;
-    color: var(--secondary-color);
-    display: block;
-    margin-bottom: 10px;
-}
-
-.buy-steps li::before {
+.buy-steps li:before {
     content: counter(step-counter);
     position: absolute;
-    top: -15px;
-    left: -15px;
-    background: var(--primary-color);
-    color: var(--bg-color);
-    width: 40px;
-    height: 40px;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-primary);
+    color: var(--color-background-dark);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 1.8rem;
     font-weight: 800;
-    box-shadow: 0 0 10px rgba(0, 255, 191, 0.7);
+    box-shadow: 0 0 15px rgba(0, 255, 191, 0.6);
 }
 
-.buy-steps li p {
-    margin: 0;
-    font-size: 1.05em;
+.buy-steps strong {
+    font-size: 1.4rem;
+    color: var(--color-text-light);
+    display: block;
+    margin-bottom: 5px;
 }
 
-
-/* ----------------------------------
-// FAQ SECTION (SSS Akordeon Stili)
------------------------------------ */
+/* ======================== */
+/* 9. FAQ Section (Accordion) */
+/* ======================== */
 .faq-container {
-    max-width: 900px;
-    margin: 40px auto;
     text-align: left;
+    margin-top: 40px;
 }
 
 .faq-item {
-    border: 1px solid var(--primary-color);
+    border: 1px solid #333;
+    border-radius: 8px;
     margin-bottom: 15px;
-    border-radius: 10px;
     overflow: hidden;
-    background-color: var(--accent-color);
-    box-shadow: 0 0 10px rgba(0, 255, 191, 0.1);
-    transition: box-shadow 0.3s;
-}
-
-.faq-item:hover {
-    box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
 }
 
 .faq-question {
-    padding: 15px 20px;
-    background-color: var(--accent-color);
-    color: var(--secondary-color);
-    font-size: 1.2em;
-    font-weight: 700;
+    background-color: #1a1b1e;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -549,181 +457,170 @@ nav a:hover, nav a:focus {
 }
 
 .faq-question:hover {
-    background-color: rgba(0, 255, 191, 0.1);
+    background-color: #2a2a2a;
 }
 
 .faq-toggle {
-    font-size: 1.5em;
+    font-size: 1.5rem;
+    font-weight: 800;
     transition: transform 0.3s;
-    color: var(--primary-color);
-}
-
-.faq-item.active .faq-toggle {
-    transform: rotate(45deg); /* + işaretini X'e çevirir */
-    color: var(--secondary-color);
 }
 
 .faq-answer {
-    max-height: 0;
-    overflow: hidden;
     padding: 0 20px;
-    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
-    border-top: none; /* Başlangıçta gizli */
+    max-height: 0; /* JS ile kontrol edilecek */
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
 
-.faq-item.active .faq-answer {
-    padding: 15px 20px 20px 20px;
-    border-top: 1px solid rgba(0, 255, 191, 0.2);
+.faq-answer.active {
+    max-height: 500px; /* Yeterince büyük bir değer */
+    padding: 20px;
+    border-top: 1px solid #333;
 }
 
-.faq-answer p {
-    margin: 10px 0;
+.faq-question.active .faq-toggle {
+    transform: rotate(45deg);
 }
 
 
-/* ----------------------------------
-// FOOTER
------------------------------------ */
+/* ======================== */
+/* 10. Footer */
+/* ======================== */
 footer {
-    background-color: #0c1825;
+    background-color: #1a1b1e;
+    padding: 30px 20px;
     text-align: center;
-    padding: 40px 20px;
-    border-top: 3px solid var(--primary-color);
-    font-size: 0.9em;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-text-fade);
+    border-top: 1px solid #333;
+    font-size: 0.9rem;
 }
 
-footer p {
-    margin: 5px 0;
+footer p:last-child {
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-top: 5px;
+}
+
+/* ======================== */
+/* 11. Glow Effects */
+/* ======================== */
+.glow1 {
+    position: absolute;
+    top: 50px;
+    left: -150px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 255, 191, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    animation: glow-move1 15s infinite alternate ease-in-out;
+}
+
+.glow2 {
+    position: absolute;
+    bottom: -100px;
+    right: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: 0;
+    animation: glow-move2 20s infinite alternate ease-in-out;
+}
+
+@keyframes glow-move1 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(200px, 150px); }
+}
+
+@keyframes glow-move2 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-150px, -200px); }
 }
 
 
-/* ----------------------------------
-// RESPONSIVE DESIGN (MOBİL UYUMLULUK)
------------------------------------ */
-
-@media (max-width: 1024px) {
-    .content-wrapper {
-        max-width: 90%;
-    }
-    
-    /* Manifesto ve Yol Haritası Bölümlerini Alt Alta Düzenle */
-    .manifesto-content-area, .roadmap-content-wrapper {
+/* ======================== */
+/* 12. Media Queries (Responsiveness) */
+/* ======================== */
+@media (max-width: 900px) {
+    .roadmap-content-wrapper {
         flex-direction: column;
-        align-items: center;
     }
-
-    .manifesto-video, .manifesto-text, .roadmap-image-wrapper, .roadmap-list {
-        max-width: 100%;
-        margin-bottom: 30px;
-    }
-    
-    .manifesto-video video {
-        max-height: 400px; 
-    }
-
-    /* Masaüstü Yol Haritası görsellerini gizle, mobil görselleri göster */
     .roadmap-image-wrapper {
-        display: none; 
+        display: none;
     }
-
-    .roadmap-list h3 {
-        text-align: center;
-    }
-
     .roadmap-image-mobile {
         display: block;
-        width: 100%;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
-        border: 3px solid var(--primary-color);
-        margin: 20px auto;
+    }
+    .manifesto-content-area {
+        flex-direction: column;
+    }
+    .manifesto-text {
+        padding-left: 0;
+        border-left: none;
+        border-top: 3px solid var(--color-primary);
+        padding-top: 20px;
     }
 }
 
 @media (max-width: 768px) {
     h1 {
-        font-size: 3em;
+        font-size: 3rem;
     }
-
     h2 {
-        font-size: 1.8em;
+        font-size: 2rem;
     }
-
-    .hero {
-        padding-top: 100px;
-        min-height: auto;
-    }
-    
-    /* Navigasyon menüsü iyileştirmeleri */
     nav {
-        padding: 10px 10px;
+        padding: 10px 0;
     }
-
     nav a {
-        padding: 5px 8px;
-        margin: 0 5px;
-        font-size: 0.8em; 
-        flex-shrink: 0; 
+        margin: 0 10px;
+        font-size: 0.9rem;
     }
-    
-    /* Sözleşme kutusu iyileştirmeleri */
-    .contract-address {
-        font-size: 0.9em;
-        max-width: 200px;
+    .hero, .section-content {
+        padding: 50px 15px;
     }
-    
-    .copy-btn {
-        padding: 8px 12px;
-    }
-    
-    .btns {
+    .contract-box {
         flex-direction: column;
         gap: 10px;
     }
-    
-    .btn {
-        padding: 12px 20px;
-        font-size: 0.9em;
-        width: 80%;
-        margin: 0 auto;
+    .contract-address {
+        word-break: break-all;
+        white-space: normal;
+        text-align: center;
+        width: 100%;
     }
-    
+    .copy-btn {
+        margin-left: 0;
+        width: 100%;
+    }
     .buy-steps li {
-        padding: 15px;
-        font-size: 0.95em;
+        padding-left: 60px;
     }
-    
-    .buy-steps li strong {
-        font-size: 1.3em;
+    .buy-steps li:before {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 2.5em;
+    .btns {
+        flex-direction: column;
     }
-    
-    nav {
-        padding: 8px 5px;
+    .btn {
+        width: 100%;
+        text-align: center;
     }
-    
-    nav a {
-        font-size: 0.7em;
-        padding: 5px 5px;
-        margin: 0 3px;
-    }
-
     .logo {
         width: 150px;
         height: 150px;
     }
-    
-    .contract-box {
-        flex-direction: row;
-    }
-
-    .contract-address {
-        max-width: 150px;
+    .language-selector {
+        top: 10px;
+        right: 10px;
     }
 }
