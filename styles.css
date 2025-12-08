@@ -93,11 +93,85 @@ nav a:hover {
 }
 
 /* ----------------------------------
+// LANGUAGE SELECTOR STYLES 
+----------------------------------- */
+.language-selector {
+    position: relative;
+    z-index: 40; 
+    text-align: center;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 191, 0.4)); 
+    margin: 20px auto; 
+}
+
+.lang-button {
+    background-color: rgba(0, 255, 191, 0.15); 
+    color: #00ffbf; 
+    border: 2px solid #00ffbf;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(5px);
+    user-select: none; 
+}
+
+.lang-button:hover {
+    background-color: rgba(0, 255, 191, 0.3);
+    box-shadow: 0 0 15px #00ffbf;
+    transform: translateY(-2px);
+}
+
+.lang-menu {
+    position: absolute; 
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    background-color: #030a12; 
+    opacity: 1; 
+    border: 1px solid #00ffbf;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 255, 191, 0.7);
+    overflow: hidden;
+    min-width: 150px;
+    display: none; 
+    z-index: 99999; 
+    text-align: left;
+}
+
+.lang-menu a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    transition: background-color 0.2s, color 0.2s;
+    border-bottom: 1px solid rgba(0, 255, 191, 0.1);
+}
+
+.lang-menu a:last-child {
+    border-bottom: none;
+}
+
+.lang-menu a:hover {
+    background-color: #00ffbf;
+    color: #030a12; 
+}
+
+/* ----------------------------------
 // SECTION STYLES
 ----------------------------------- */
 .hero {
     text-align: center;
-    padding-top: 150px; 
+    /* DÜZENLEME: İçeriği yukarı çekmek için padding azaltıldı */
+    padding-top: 110px; 
     padding-bottom: 100px;
     padding-left: 20px;
     padding-right: 20px;
@@ -117,12 +191,48 @@ nav a:hover {
 .hero .sub-h1 { 
     font-size: 30px; 
     font-weight: 600;
-    margin-top: 5px;
+    margin-top: 5px; 
     margin-bottom: 10px;
     opacity: 0.9;
     color: #00ffbf;
     text-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
 }
+
+/* LOGO */
+.logo {
+    width: 160px; 
+    height: 160px; 
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 35px rgba(0, 255, 191, 0.9); 
+    z-index: 60;
+    margin-top: 15px; 
+    margin-bottom: 15px; 
+    transition: transform 0.3s;
+}
+.logo:hover {
+    transform: scale(1.1); 
+}
+
+
+/* SOCIAL ICONS */
+.social-icons {
+    margin: 20px auto; 
+}
+
+.social-icons a {
+    color: #00ffbf;
+    font-size: 30px;
+    margin: 0 10px;
+    transition: color 0.3s, transform 0.3s;
+    text-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
+}
+
+.social-icons a:hover {
+    color: #4dfff7;
+    transform: scale(1.2);
+}
+
 
 .hero p {
     font-size: 20px; 
@@ -136,7 +246,7 @@ nav a:hover {
 /* CONTRAC ADDRESS STYLES (DESKTOP) */
 .contract-container {
     max-width: 550px;
-    margin: 30px auto 0px auto; /* Sosyal ikonlar için alttan boşluk azaltıldı */
+    margin: 30px auto 10px auto; 
     position: relative; 
 }
 .contract-label {
@@ -193,35 +303,9 @@ nav a:hover {
     transform: translateY(-1px);
 }
 
-/* ----------------------------------
-// SOCIAL ICONS (YENİ EKLENDİ)
------------------------------------ */
-.social-icons {
-    margin: 20px auto; /* Kontrat adresinden boşluk */
-    text-align: center;
-    /* Kontrat kutusuyla aynı genişlikte tutmak için (mobil uyumlu) */
-    max-width: 550px; 
-}
-
-.social-icons a {
-    color: #00ffbf; /* Sloth teması rengi */
-    font-size: 28px; /* Simge boyutu */
-    margin: 0 15px; /* Simgeler arası boşluk */
-    transition: color 0.3s, transform 0.3s;
-    display: inline-block;
-}
-
-.social-icons a:hover {
-    color: #4dfff7; /* Hafif bir parlama efekti */
-    transform: scale(1.2) translateY(-2px);
-    text-shadow: 0 0 10px #00ffbf;
-}
-/* ----------------------------------
-// BUTTONS
------------------------------------ */
+/* BUTTONS */
 .btns {
     margin-top: 35px;
-    /* Buton altındaki boşluk ÇOK FAZLA ARTIRILDI (70px) */
     margin-bottom: 70px; 
     display: flex;
     flex-wrap: wrap;
@@ -251,12 +335,10 @@ nav a:hover {
 
 /* SECTION BASICS */
 .section-content {
-    /* Bölüm dolgusu SIFIRLANDI */
     padding: 0px 0; 
     max-width: 100%;
     margin: 0 auto;
     text-align: center;
-    /* ANCHOR FIX: Kaydırma sırasında menü yüksekliği kadar boşluk bırakır */
     scroll-margin-top: 100px; 
 }
 
@@ -278,10 +360,8 @@ nav a:hover {
 
 /* Manifesto Section */
 .manifesto-section {
-    /* Bölüm dolgusu SIFIRLANDI */
     padding: 0px 0; 
     text-align: center;
-    /* ANCHOR FIX: Kaydırma sırasında menü yüksekliği kadar boşluk bırakır */
     scroll-margin-top: 100px; 
 }
 
@@ -336,12 +416,6 @@ nav a:hover {
 .highlight {
     color: #00ffbf; 
     font-weight: 600;
-}
-
-/* YENİ: Vurgulanan metin (Tırnak işaretli kısımlar) */
-.creative-highlight {
-    font-weight: 600; 
-    color: #4dfff7; 
 }
 
 .manifesto-text p {
@@ -468,25 +542,21 @@ nav a:hover {
     color: #00ffbf;
 }
 
-/* ICON STYLES */
+/* ICON STYLES (Default: Goal 🚀) */
 .roadmap-list li::before {
     position: absolute;
     left: 0;
     font-size: 22px;
     line-height: 1.6;
     transition: color 0.3s;
+    content: '🚀'; /* Default for goals */
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.9); 
 }
 
-/* ✅ - COMPLETED TASK */
-.roadmap-list li:first-child::before {
+/* ✅ - COMPLETED TASK (Override for specific items) */
+.roadmap-list .completed-step::before {
     content: '✅'; 
     text-shadow: 0 0 10px #00ffbf;
-}
-
-/* 🚀 - GOALS */
-.roadmap-list li:not(:first-child)::before {
-    content: '🚀';
-    text-shadow: 0 0 8px rgba(255, 204, 0, 0.9); 
 }
 
 /* ----------------------------------
@@ -547,12 +617,11 @@ nav a:hover {
     font-weight: 300; 
 }
 
-/* YENİ: FAQ içindeki creative-highlight stilini tanımla */
-.faq-answer p .creative-highlight {
+/* Bold text style for highlights (used to replace <b>) */
+.creative-highlight { 
     font-weight: 600; 
     color: #4dfff7; 
 }
-
 
 /* ----------------------------------
 // FOOTER
@@ -587,7 +656,13 @@ footer p {
 
     /* Hero Padding Mobile */
     .hero {
-         padding-top: 100px; 
+         /* DÜZENLEME: İçeriği yukarı çekmek için padding azaltıldı (Mobile) */
+         padding-top: 70px; 
+    }
+
+    /* Dil Seçici Mobile Konum */
+    .language-selector {
+        margin: 20px auto; 
     }
 
     /* Font and Headers */
@@ -612,10 +687,18 @@ footer p {
          padding: 0 5px;
     }
 
+    /* SOCIAL ICONS MOBILE */
+    .social-icons {
+        margin: 15px auto; 
+    }
+    .social-icons a {
+        font-size: 25px; 
+        margin: 0 8px;
+    }
+
     /* BUTTONS MOBILE LAYOUT */
     .btns {
         gap: 8px; 
-        /* Buton altındaki boşluk ÇOK FAZLA ARTIRILDI (70px) */
         margin-bottom: 70px; 
     }
     .btn {
@@ -625,10 +708,9 @@ footer p {
         min-width: 100px; 
     }
 
-    /* Section Padding Mobile (Bölüm dolgusu SIFIRLANDI) */
+    /* Section Padding Mobile */
     .section-content, .manifesto-section {
         padding: 0px 0; 
-        /* Mobil menü de 60-70px civarı olduğu için 80px yeterli olur */
         scroll-margin-top: 80px; 
     }
     .content-wrapper {
@@ -691,17 +773,6 @@ footer p {
         padding: 6px 10px;
         font-size: 12px;
     }
-
-    /* SOCIAL ICONS MOBILE STYLES */
-    .social-icons {
-         margin: 15px auto;
-         max-width: 95%; /* Mobil genişlik ayarı */
-    }
-    .social-icons a {
-        font-size: 24px; 
-        margin: 0 10px;
-    }
-
 
     /* How to Buy */
     .buy-steps {
