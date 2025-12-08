@@ -1,837 +1,729 @@
 /* ----------------------------------
 // GLOBAL STYLES & ANIMATION ENHANCEMENTS
 ----------------------------------- */
+:root {
+    --bg-color: #030a12;
+    --primary-color: #00ffbf; /* Tembel Hayvan Yeşili/Mavi-Yeşil */
+    --secondary-color: #4dfff7; /* Daha Parlak Mavi-Yeşil (Vurgu/Hover) */
+    --text-color: #fff;
+    --highlight-text: #f7ff00; /* creative-highlight için Sarı */
+    --accent-color: #0c1825; /* Kutular/Konteynerler için Koyu Arka Plan */
+}
+
 html {
     scroll-behavior: smooth;
 }
+
 body {
     margin: 0;
     padding: 0;
-    background: #030a12;
-    color: #fff;
+    background: var(--bg-color);
+    color: var(--text-color);
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden; 
 }
 
-/* FOREST THEME BACKGROUND GLOWS */
-.glow1, .glow2 {
-    position: fixed;
-    width: 80vh;
-    height: 80vh;
-    filter: blur(350px);
-    z-index: -1;
-    opacity: 0.4; 
-    border-radius: 50%;
-}
-.glow1 {
-    top: -10vh;
-    left: -10vh;
-    background: #00ffbf; 
-    animation: pulse1 8s infinite alternate;
-}
-.glow2 {
-    bottom: -10vh;
-    right: -10vh;
-    background: #00a0a0; 
-    animation: pulse2 10s infinite alternate;
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-@keyframes pulse1 { from {opacity:0.35;} to {opacity:0.55;} } 
-@keyframes pulse2 { from {opacity:0.30;} to {opacity:0.50;} } 
-
-/* LOGO */
-.logo {
-    width: 160px; 
-    height: 160px; 
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 0 35px rgba(0, 255, 191, 0.9); 
-    z-index: 60;
-    margin-top: 15px; 
-    margin-bottom: 15px; 
-    transition: transform 0.3s;
-}
-.logo:hover {
-    transform: scale(1.1); 
+a:hover {
+    color: var(--secondary-color);
 }
 
+h1, h2, h3 {
+    font-weight: 800;
+    text-align: center;
+    color: var(--text-color);
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 5em;
+    margin-bottom: 0.1em;
+    color: var(--primary-color);
+    text-shadow: 0 0 15px rgba(0, 255, 191, 0.5);
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+    color: var(--secondary-color);
+}
 
 /* ----------------------------------
-// NAVIGATION
+// BACKGROUND GLOW EFFECTS (Arka Plan Işıltıları)
+----------------------------------- */
+.glow1, .glow2 {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(150px); 
+    opacity: 0.4;
+    z-index: -1;
+}
+
+.glow1 {
+    top: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    background-color: var(--primary-color); 
+    animation: pulse1 10s infinite alternate;
+}
+
+.glow2 {
+    bottom: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background-color: var(--secondary-color); 
+    animation: pulse2 12s infinite alternate;
+}
+
+@keyframes pulse1 {
+    0% { transform: scale(1); opacity: 0.3; }
+    100% { transform: scale(1.1); opacity: 0.5; }
+}
+
+@keyframes pulse2 {
+    0% { transform: scale(1); opacity: 0.3; }
+    100% { transform: scale(0.9); opacity: 0.5; }
+}
+
+/* ----------------------------------
+// NAVIGATION (Sabit ve Tek Satır Menü)
 ----------------------------------- */
 nav {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(3, 10, 18, 0.98);
-    backdrop-filter: blur(8px);
-    padding: 15px 50px;
-    z-index: 50;
+    z-index: 1000;
     display: flex;
     justify-content: center;
-    box-shadow: 0 2px 20px rgba(0, 255, 191, 0.2);
+    background: rgba(3, 10, 18, 0.95); 
+    backdrop-filter: blur(5px);
+    padding: 15px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 191, 0.2);
+    overflow-x: auto; /* Mobil cihazlarda yatay kaydırmaya izin verir */
+    white-space: nowrap; /* Menünün tek satırda kalmasını sağlar */
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 17px;
-    font-weight: 600;
-    transition: color 0.3s, transform 0.3s;
-    border-bottom: 3px solid transparent;
-    padding-bottom: 5px;
-}
-
-nav a:hover {
-    color: #00ffbf; 
-    border-bottom-color: #00ffbf;
-    transform: translateY(-2px);
-}
-
-/* ----------------------------------
-// LANGUAGE SELECTOR STYLES 
------------------------------------ */
-.language-selector {
-    position: relative;
-    z-index: 40; 
-    text-align: center;
-    filter: drop-shadow(0 0 10px rgba(0, 255, 191, 0.4)); 
-    margin: 20px auto; 
-}
-
-.lang-button {
-    background-color: rgba(0, 255, 191, 0.15); 
-    color: #00ffbf; 
-    border: 2px solid #00ffbf;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    backdrop-filter: blur(5px);
-    user-select: none; 
-}
-
-.lang-button:hover {
-    background-color: rgba(0, 255, 191, 0.3);
-    box-shadow: 0 0 15px #00ffbf;
-    transform: translateY(-2px);
-}
-
-.lang-menu {
-    position: absolute; 
-    top: 100%; 
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 5px;
-    background-color: #030a12; 
-    opacity: 1; 
-    border: 1px solid #00ffbf;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 255, 191, 0.7);
-    overflow: hidden;
-    min-width: 150px;
-    display: none; 
-    z-index: 99999; 
-    text-align: left;
-}
-
-.lang-menu a {
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: block;
-    font-size: 15px;
-    font-weight: 400;
-    transition: background-color 0.2s, color 0.2s;
-    border-bottom: 1px solid rgba(0, 255, 191, 0.1);
-}
-
-.lang-menu a:last-child {
-    border-bottom: none;
-}
-
-.lang-menu a:hover {
-    background-color: #00ffbf;
-    color: #030a12; 
-}
-
-/* ----------------------------------
-// SECTION STYLES
------------------------------------ */
-.hero {
-    text-align: center;
-    /* DÜZENLEME: İçeriği yukarı çekmek için padding azaltıldı */
-    padding-top: 110px; 
-    padding-bottom: 100px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-/* HEADERS: $SLT (h1) and SLOTH TOKEN (sub-h1) */
-.hero h1 { 
-    font-size: 68px; 
-    font-weight: 800;
-    text-shadow: 0 0 25px #00ffbf; 
-    margin: 0;
-    padding: 0;
-    letter-spacing: 2px;
-    line-height: 1;
-    margin-bottom: 5px; 
-}
-.hero .sub-h1 { 
-    font-size: 30px; 
-    font-weight: 600;
-    margin-top: 5px; 
-    margin-bottom: 10px;
-    opacity: 0.9;
-    color: #00ffbf;
-    text-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
-}
-
-/* LOGO */
-.logo {
-    width: 160px; 
-    height: 160px; 
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 0 35px rgba(0, 255, 191, 0.9); 
-    z-index: 60;
-    margin-top: 15px; 
-    margin-bottom: 15px; 
-    transition: transform 0.3s;
-}
-.logo:hover {
-    transform: scale(1.1); 
-}
-
-
-/* SOCIAL ICONS */
-.social-icons {
-    margin: 20px auto; 
-}
-
-.social-icons a {
-    color: #00ffbf;
-    font-size: 30px;
-    margin: 0 10px;
-    transition: color 0.3s, transform 0.3s;
-    text-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
-}
-
-.social-icons a:hover {
-    color: #4dfff7;
-    transform: scale(1.2);
-}
-
-
-.hero p {
-    font-size: 20px; 
-    opacity: 0.9;
-    max-width: 700px;
-    margin: 15px auto;
-    line-height: 1.5; 
-    font-weight: 400; 
-}
-
-/* CONTRAC ADDRESS STYLES (DESKTOP) */
-.contract-container {
-    max-width: 550px;
-    margin: 30px auto 10px auto; 
-    position: relative; 
-}
-.contract-label {
-    font-size: 14px;
-    font-weight: 700;
-    color: #030a12;
-    padding: 2px 10px;
-    background: #00ffbf;
-    border-radius: 5px;
-    position: absolute;
-    top: -12px; 
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    box-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
-}
-.contract-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 255, 191, 0.1);
-    border: 1px solid rgba(0, 255, 191, 0.4);
-    border-radius: 8px;
-    padding: 10px 15px;
-    gap: 10px;
-    box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
-}
-
-.contract-address {
-    flex-grow: 1;
-    font-size: 16px;
-    font-weight: 500;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    color: #00ffbf;
-    cursor: pointer;
-}
-
-.copy-btn {
-    background: #00ffbf;
-    color: #030a12;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-}
-
-.copy-btn:hover {
-    background: #4dfff7;
-    transform: translateY(-1px);
-}
-
-/* BUTTONS */
-.btns {
-    margin-top: 35px;
-    margin-bottom: 70px; 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-}
-.btn {
-    display: inline-block;
-    padding: 14px 30px;
-    border-radius: 10px; 
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
-    color: white;
-    border: 2px solid #00ffbf; 
-    background: rgba(0, 255, 191, 0.1); 
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 20px rgba(0,255,191,0.5);
-    transition: 0.3s;
+    color: var(--text-color);
     text-transform: uppercase;
-}
-.btn:hover {
-    box-shadow: 0 0 35px rgba(0,255,191,1);
-    background: rgba(0, 255, 191, 0.3);
-    transform: translateY(-2px);
+    font-weight: 600;
+    padding: 5px 15px;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 0.95em; 
+    flex-shrink: 0; /* Menü öğelerinin daralmasını engeller */
 }
 
-/* SECTION BASICS */
-.section-content {
-    padding: 0px 0; 
-    max-width: 100%;
-    margin: 0 auto;
+nav a:hover, nav a:focus {
+    background-color: rgba(0, 255, 191, 0.1);
+    color: var(--primary-color);
+}
+
+/* ----------------------------------
+// GENERAL SECTION STYLES (Genel Bölüm Stilleri)
+----------------------------------- */
+.section-content, .hero, .manifesto-section {
+    padding: 100px 20px;
     text-align: center;
-    scroll-margin-top: 100px; 
+    min-height: 80vh; 
+    position: relative;
+    z-index: 1;
 }
 
-/* Content Wrapper */
 .content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 60px; 
 }
 
-/* Section Main Headers */
-.section-content h2 {
-    font-size: 40px; 
-    font-weight: 800;
-    text-shadow: 0 0 15px #00ffbf;
-    margin-bottom: 20px; 
-    color: #00ffbf; 
+.creative-highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 255, 191, 0.5);
 }
-
-/* Manifesto Section */
-.manifesto-section {
-    padding: 0px 0; 
-    text-align: center;
-    scroll-margin-top: 100px; 
-}
-
-/* Manifesto Header */
-.manifesto-section h2 {
-    font-size: 40px; 
-    font-weight: 800;
-    text-shadow: 0 0 15px #00ffbf;
-    margin-bottom: 20px; 
-    color: #00ffbf; 
-    text-align: center; 
-}
-
-/* Manifesto Content Area */
-.manifesto-content-area {
-    display: flex;
-    align-items: flex-start; 
-    justify-content: center;
-    gap: 60px;
-    max-width: 1000px; 
-    margin: 0 auto; 
-    padding: 0 20px; 
-}
-
-/* VIDEO SIZE AND AREA */
-.manifesto-video {
-    flex-basis: 300px; 
-    flex-shrink: 0;
-}
-.manifesto-video video {
-    width: 100%; 
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(0,255,191,0.7); 
-}
-
-
-/* Manifesto Text Block */
-.manifesto-text {
-    flex-grow: 1; 
-    max-width: 600px; 
-    text-align: left; 
-}
-
-/* Manifesto h3 */
-.manifesto-text h3 {
-    margin-top: 0; 
-    font-size: 28px; 
-    color: #00ffbf;
-}
-
 
 .highlight {
-    color: #00ffbf; 
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+
+/* ----------------------------------
+// HERO SECTION
+----------------------------------- */
+.hero {
+    padding-top: 150px;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 0 30px rgba(0, 255, 191, 0.5);
+    transition: transform 0.5s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+.sub-h1 {
+    font-size: 1.5em;
     font-weight: 600;
+    color: var(--text-color);
+    margin: 0 0 40px 0;
+}
+
+.hero p {
+    max-width: 600px;
+    font-size: 1.1em;
+    margin: 30px 0;
+    line-height: 1.8;
+}
+
+/* Contract Address Box (Kontrat Adresi Kutusu) */
+.contract-container {
+    background-color: var(--accent-color);
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
+    max-width: 90%;
+}
+
+.contract-label {
+    font-size: 0.8em;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.contract-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.contract-address {
+    font-family: monospace;
+    color: var(--text-color);
+    background: #000;
+    padding: 8px 15px;
+    border-radius: 5px 0 0 5px;
+    overflow-x: scroll; /* Adres mobil cihazlarda taşarsa yatay kaydırma sağlar */
+    white-space: nowrap;
+    flex-grow: 1;
+    max-width: 250px;
+}
+
+.copy-btn {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 0 5px 5px 0;
+    transition: background-color 0.3s;
+    flex-shrink: 0;
+}
+
+.copy-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+
+/* Social Icons (Sosyal İkonlar) */
+.social-icons {
+    margin: 20px 0 30px 0;
+    font-size: 2em;
+}
+
+.social-icons a {
+    color: var(--text-color);
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+}
+
+/* Language Selector (Dil Seçici) */
+.language-selector {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.lang-button {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang-button:hover {
+    background-color: rgba(0, 255, 191, 0.1);
+}
+
+.lang-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--accent-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    min-width: 150px;
+    display: none; /* Varsayılan olarak gizli */
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.lang-menu.show {
+    display: block;
+}
+
+.lang-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.lang-menu a:hover {
+    background-color: rgba(0, 255, 191, 0.2);
+    color: var(--primary-color);
+}
+
+/* Call to Action Buttons (Harekete Geçirme Butonları) */
+.btns {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 20px rgba(77, 255, 247, 0.7);
+}
+
+
+/* ----------------------------------
+// MANIFESTO SECTION
+----------------------------------- */
+.manifesto-section {
+    background-color: var(--accent-color);
+}
+
+.manifesto-content-area {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.manifesto-video {
+    flex: 1;
+    min-width: 300px;
+    max-width: 50%;
+}
+
+.manifesto-video video {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 5px solid var(--primary-color);
+    display: block;
+}
+
+.manifesto-text {
+    flex: 1;
+    max-width: 50%;
 }
 
 .manifesto-text p {
-    font-size: 17px; 
-    opacity: 0.9;
-    line-height: 1.7;
-    margin-bottom: 30px; 
-    font-weight: 300; 
+    margin-bottom: 20px;
+    font-size: 1.1em;
 }
 
-/* ----------------------------------
-// HOW TO BUY (Ordered List)
------------------------------------ */
-.buy-steps {
-    max-width: 800px;
-    margin: 60px auto;
+.manifesto-text h3 {
     text-align: left;
-}
-.buy-steps ol {
-    list-style-type: none; 
-    counter-reset: step-counter;
-    padding: 0;
-}
-.buy-steps li {
-    counter-increment: step-counter;
-    margin-bottom: 40px;
-    position: relative;
-    font-size: 18px; 
-    line-height: 1.5;
-    font-weight: 400;
-    background: rgba(0, 255, 191, 0.05);
-    padding: 20px 20px 20px 80px; 
-    border-radius: 10px;
-}
-.buy-steps li strong {
-    font-weight: 600;
-    display: block;
-    margin-bottom: 5px;
-}
-.buy-steps li::before {
-    content: counter(step-counter);
-    position: absolute;
-    left: 15px; 
-    top: 50%;
-    transform: translateY(-50%);
-    background: #00ffbf;
-    color: #030a12;
-    width: 45px;
-    height: 45px;
-    line-height: 45px;
-    text-align: center;
-    border-radius: 50%;
-    font-weight: 800;
-    font-size: 22px;
-    box-shadow: 0 0 15px #00ffbf;
-    border: 3px solid #030a12;
-    z-index: 2; 
-}
-.buy-steps p {
-    margin-top: 5px;
-    font-size: 15px; 
-    opacity: 0.85;
-}
-.buy-steps a {
-    text-decoration: none;
+    margin-top: 30px;
+    font-size: 1.8em;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    padding-bottom: 5px;
 }
 
+
 /* ----------------------------------
-// ROADMAP
+// ROADMAP SECTION
 ----------------------------------- */
 .roadmap-container {
-    max-width: 1000px; 
-    margin: 0 auto;
-    text-align: center;
+    text-align: left;
 }
 
 .roadmap-content-wrapper {
     display: flex;
-    align-items: flex-start; 
-    justify-content: center;
-    gap: 60px; 
-    margin-top: 40px;
+    gap: 40px;
+    align-items: flex-start;
 }
+
 .roadmap-image-wrapper {
-    flex: 0 0 30%; 
-    max-width: 300px;
-    text-align: center;
+    flex: 1;
     display: flex;
-    flex-direction: column; 
-    gap: 140px; 
+    flex-direction: column;
+    gap: 20px;
+    min-width: 300px;
+    max-width: 400px;
 }
+
 .roadmap-image-wrapper img {
-    width: 100%; 
-    height: auto;
-    border-radius: 14px;
-    box-shadow: 0 0 25px rgba(0, 255, 191, 0.7);
-    transition: transform 0.3s;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
+    border: 3px solid var(--primary-color);
 }
-.roadmap-image-mobile {
-    display: none;
-}
+
 .roadmap-list {
-    flex: 1; 
-    max-width: 650px; 
-    text-align: left;
+    flex: 2;
 }
-.roadmap-list ul {
-    list-style: none;
-    padding-left: 0;
-}
-.roadmap-list li {
-    margin-bottom: 20px; 
-    line-height: 1.7;
-    padding-left: 35px; 
-    position: relative;
-    font-size: 17px; 
-    font-weight: 400;
-}
+
 .roadmap-list h3 {
-    margin-top: 50px;
-    margin-bottom: 20px;
-    font-size: 26px; 
-    font-weight: 600;
-    color: #00ffbf;
+    text-align: left;
+    margin-bottom: 15px;
 }
 
-/* ICON STYLES (Default: Goal 🚀) */
-.roadmap-list li::before {
-    position: absolute;
-    left: 0;
-    font-size: 22px;
-    line-height: 1.6;
-    transition: color 0.3s;
-    content: '🚀'; /* Default for goals */
-    text-shadow: 0 0 8px rgba(255, 204, 0, 0.9); 
+.roadmap-list ul {
+    margin-top: 15px;
 }
 
-/* ✅ - COMPLETED TASK (Override for specific items) */
-.roadmap-list .completed-step::before {
-    content: '✅'; 
-    text-shadow: 0 0 10px #00ffbf;
+.roadmap-list li {
+    background-color: var(--accent-color);
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border-left: 5px solid var(--secondary-color);
+    list-style: none;
 }
+
+/* Mobil cihazlarda sadece metin gösterimi için gizle */
+.roadmap-image-mobile {
+    display: none; 
+}
+
 
 /* ----------------------------------
-// FAQ (FREQUENTLY ASKED QUESTIONS)
+// HOW TO BUY SECTION (Nasıl Alınır Bölümü)
+----------------------------------- */
+.buy-steps ol {
+    counter-reset: step-counter;
+    list-style: none;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.buy-steps li {
+    counter-increment: step-counter;
+    background-color: var(--accent-color);
+    border: 1px solid rgba(0, 255, 191, 0.2);
+    border-left: 8px solid var(--primary-color);
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.buy-steps li strong {
+    font-size: 1.5em;
+    color: var(--secondary-color);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.buy-steps li::before {
+    content: counter(step-counter);
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    background: var(--primary-color);
+    color: var(--bg-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: 800;
+    box-shadow: 0 0 10px rgba(0, 255, 191, 0.7);
+}
+
+.buy-steps li p {
+    margin: 0;
+    font-size: 1.05em;
+}
+
+
+/* ----------------------------------
+// FAQ SECTION (SSS Akordeon Stili)
 ----------------------------------- */
 .faq-container {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 900px;
+    margin: 40px auto;
     text-align: left;
 }
 
 .faq-item {
+    border: 1px solid var(--primary-color);
     margin-bottom: 15px;
-    border: 1px solid rgba(0, 255, 191, 0.3);
     border-radius: 10px;
     overflow: hidden;
-    background: rgba(0, 255, 191, 0.05);
-    transition: all 0.3s;
+    background-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(0, 255, 191, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.faq-item:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
 }
 
 .faq-question {
-    padding: 18px; 
-    font-size: 17px; 
-    font-weight: 600;
+    padding: 15px 20px;
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    font-size: 1.2em;
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(0, 255, 191, 0.1);
-    color: #00ffbf;
+    transition: background-color 0.3s;
 }
 
 .faq-question:hover {
-    background: rgba(0, 255, 191, 0.2);
+    background-color: rgba(0, 255, 191, 0.1);
 }
 
 .faq-toggle {
-    font-size: 24px;
-    line-height: 1;
+    font-size: 1.5em;
     transition: transform 0.3s;
+    color: var(--primary-color);
 }
 
 .faq-item.active .faq-toggle {
-    transform: rotate(45deg);
+    transform: rotate(45deg); /* + işaretini X'e çevirir */
+    color: var(--secondary-color);
 }
 
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-out;
     padding: 0 20px;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    border-top: none; /* Başlangıçta gizli */
+}
+
+.faq-item.active .faq-answer {
+    padding: 15px 20px 20px 20px;
+    border-top: 1px solid rgba(0, 255, 191, 0.2);
 }
 
 .faq-answer p {
-    padding: 10px 0 20px 0;
-    font-size: 15px; 
-    opacity: 0.9;
-    font-weight: 300; 
+    margin: 10px 0;
 }
 
-/* Bold text style for highlights (used to replace <b>) */
-.creative-highlight { 
-    font-weight: 600; 
-    color: #4dfff7; 
-}
 
 /* ----------------------------------
 // FOOTER
 ----------------------------------- */
 footer {
-    padding: 40px 20px;
+    background-color: #0c1825;
     text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-    border-top: 2px solid rgba(0, 255, 191, 0.2);
-    margin-top: 80px;
+    padding: 40px 20px;
+    border-top: 3px solid var(--primary-color);
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
 }
+
 footer p {
     margin: 5px 0;
-    font-size: 15px;
-    opacity: 0.8;
-    font-weight: 300;
 }
 
+
 /* ----------------------------------
-// MOBILE RESPONSIVENESS
+// RESPONSIVE DESIGN (MOBİL UYUMLULUK)
 ----------------------------------- */
-@media (max-width: 850px) {
 
-    /* Navigation */
-    nav {
-        padding: 15px 5px;
-    }
-    nav a {
-        margin: 0 5px;
-        font-size: 12px; 
-    }
-
-    /* Hero Padding Mobile */
-    .hero {
-         /* DÜZENLEME: İçeriği yukarı çekmek için padding azaltıldı (Mobile) */
-         padding-top: 70px; 
-    }
-
-    /* Dil Seçici Mobile Konum */
-    .language-selector {
-        margin: 20px auto; 
-    }
-
-    /* Font and Headers */
-    .hero h1 { 
-        font-size: 36px; 
-        letter-spacing: normal; 
-        white-space: nowrap; 
-        overflow: hidden; 
-        text-overflow: ellipsis;
-        padding: 0 10px; 
-        margin-bottom: 5px;
-    }
-    .hero .sub-h1 { 
-        font-size: 22px; 
-    }
-
-    /* HERO PARAGRAPH FIX */
-    .hero p {
-         font-size: 16px; 
-         white-space: normal; 
-         word-wrap: break-word;
-         padding: 0 5px;
-    }
-
-    /* SOCIAL ICONS MOBILE */
-    .social-icons {
-        margin: 15px auto; 
-    }
-    .social-icons a {
-        font-size: 25px; 
-        margin: 0 8px;
-    }
-
-    /* BUTTONS MOBILE LAYOUT */
-    .btns {
-        gap: 8px; 
-        margin-bottom: 70px; 
-    }
-    .btn {
-        padding: 10px 18px;
-        font-size: 14px;
-        flex-grow: 1; 
-        min-width: 100px; 
-    }
-
-    /* Section Padding Mobile */
-    .section-content, .manifesto-section {
-        padding: 0px 0; 
-        scroll-margin-top: 80px; 
-    }
+@media (max-width: 1024px) {
     .content-wrapper {
-         padding: 0 20px; 
+        max-width: 90%;
     }
-
-    /* Manifesto Mobile Layout */
-    .manifesto-section h2 {
-        margin-bottom: 15px; 
-    }
-    .manifesto-content-area {
-        flex-direction: column; 
-        gap: 40px;
-        padding: 0; 
-    }
-    .manifesto-video {
-        flex-basis: auto; 
-        width: 100%; 
-        max-width: 300px; 
-        margin: 0 auto; 
-    }
-    .manifesto-text {
-         padding: 0; 
-         max-width: 100%; 
-         text-align: left; 
-    }
-    .manifesto-text p {
-        font-size: 15px;
-    }
-    .manifesto-text h3 {
-         font-size: 20px;
-    }
-
-    /* Section Content H2 Mobile */
-    .section-content h2 {
-        font-size: 32px; 
-        margin-bottom: 15px; 
-    }
-
-    /* LOGO MOBILE SIZE */
-    .logo {
-        width: 120px; 
-        height: 120px;
-    }
-
-    /* CONTRACT ADDRESS MOBILE STYLES */
-    .contract-container {
-        max-width: 95%; 
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0 10px; 
-    }
-    .contract-box {
-        padding: 8px 10px;
-    }
-    .contract-address {
-        font-size: 12px; 
-    }
-    .copy-btn {
-        padding: 6px 10px;
-        font-size: 12px;
-    }
-
-    /* How to Buy */
-    .buy-steps {
-    }
-    .buy-steps li {
-        padding: 15px 15px 15px 60px; 
-        margin-bottom: 20px;
-        font-size: 16px;
-    }
-    .buy-steps li::before {
-        left: 10px; 
-        width: 35px;
-        height: 35px;
-        line-height: 35px;
-        font-size: 18px;
-    }
-    .buy-steps p {
-         font-size: 14px;
-    }
-
-    /* ROADMAP MOBILE LAYOUT */
-    .roadmap-content-wrapper {
+    
+    /* Manifesto ve Yol Haritası Bölümlerini Alt Alta Düzenle */
+    .manifesto-content-area, .roadmap-content-wrapper {
         flex-direction: column;
-        gap: 20px;
+        align-items: center;
     }
+
+    .manifesto-video, .manifesto-text, .roadmap-image-wrapper, .roadmap-list {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .manifesto-video video {
+        max-height: 400px; 
+    }
+
+    /* Masaüstü Yol Haritası görsellerini gizle, mobil görselleri göster */
     .roadmap-image-wrapper {
         display: none; 
     }
-    .roadmap-list {
-        max-width: 100%; 
-        padding: 0;
-    }
+
     .roadmap-list h3 {
-        font-size: 22px;
-        text-align: center; 
-    }
-    .roadmap-list li {
-        font-size: 15px;
-    }
-     /* Mobile images */
-    .roadmap-image-mobile {
-        display: block; 
-        width: 90%; 
-        max-width: 350px; 
-        margin: 25px auto 15px auto; 
-        border-radius: 14px;
-        box-shadow: 0 0 25px rgba(0, 255, 191, 0.7);
-    }
-    .roadmap-list ul {
-        text-align: left;
-        margin: 0;
-        padding: 0;
-        max-width: 400px; 
-        margin: 0 auto; 
+        text-align: center;
     }
 
-    /* FAQ Mobile */
-    .faq-question {
+    .roadmap-image-mobile {
+        display: block;
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
+        border: 3px solid var(--primary-color);
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .hero {
+        padding-top: 100px;
+        min-height: auto;
+    }
+    
+    /* Navigasyon menüsü iyileştirmeleri */
+    nav {
+        padding: 10px 10px;
+    }
+
+    nav a {
+        padding: 5px 8px;
+        margin: 0 5px;
+        font-size: 0.8em; 
+        flex-shrink: 0; 
+    }
+    
+    /* Sözleşme kutusu iyileştirmeleri */
+    .contract-address {
+        font-size: 0.9em;
+        max-width: 200px;
+    }
+    
+    .copy-btn {
+        padding: 8px 12px;
+    }
+    
+    .btns {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.9em;
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    .buy-steps li {
         padding: 15px;
-        font-size: 15px;
+        font-size: 0.95em;
+    }
+    
+    .buy-steps li strong {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.5em;
+    }
+    
+    nav {
+        padding: 8px 5px;
+    }
+    
+    nav a {
+        font-size: 0.7em;
+        padding: 5px 5px;
+        margin: 0 3px;
+    }
+
+    .logo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .contract-box {
+        flex-direction: row;
+    }
+
+    .contract-address {
+        max-width: 150px;
     }
 }
