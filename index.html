@@ -107,14 +107,13 @@
     }
 
     /* ----------------------------------
-    // LANGUAGE SELECTOR STYLES (YENİ KONUM)
+    // LANGUAGE SELECTOR STYLES 
     ----------------------------------- */
     .language-selector {
-        /* Mutlak konumlandırma kaldırıldı, normal akışa alındı */
         z-index: 40; 
         text-align: center;
         filter: drop-shadow(0 0 10px rgba(0, 255, 191, 0.4)); 
-        margin: 20px auto; /* Üstten ve alttan boşluk */
+        margin: 20px auto; /* Normal akışta yeterli boşluk */
     }
 
     .lang-button {
@@ -142,7 +141,7 @@
     }
     
     .lang-menu {
-        position: absolute; /* Açılır menü için mutlak konumlandırma gerekli */
+        position: absolute; 
         top: 100%; 
         left: 50%;
         transform: translateX(-50%);
@@ -241,7 +240,8 @@
     /* CONTRAC ADDRESS STYLES (DESKTOP) */
     .contract-container {
         max-width: 550px;
-        margin: 30px auto 40px auto;
+        /* Alttaki dil seçici için yeterli boşluk */
+        margin: 30px auto 10px auto; 
         position: relative; 
     }
     .contract-label {
@@ -666,7 +666,7 @@
 
         /* Dil Seçici Mobile Konum */
         .language-selector {
-            margin: 20px auto; /* Normal akışta yeterli boşluk */
+            margin: 20px auto; 
         }
         
         /* Font and Headers */
@@ -869,6 +869,14 @@
         <a href="https://github.com/sloth-token" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
     </div> 
     
+    <div class="contract-container">
+        <span class="contract-label">CONTRACT ADDRESS</span>
+        <div class="contract-box">
+            <span class="contract-address" id="contractAddress">XXXXXXXXXXXXXXXXXXXX</span>
+            <button class="copy-btn" id="copyButton">COPY</button>
+        </div>
+    </div>
+
     <div class="language-selector">
         <button class="lang-button" onclick="toggleLangMenu(event)">
             Change Language <i class="fas fa-globe"></i>
@@ -881,14 +889,6 @@
             <a href="tr.html">Türkçe</a>
         </div>
     </div>
-    <div class="contract-container">
-        <span class="contract-label">CONTRACT ADDRESS</span>
-        <div class="contract-box">
-            <span class="contract-address" id="contractAddress">XXXXXXXXXXXXXXXXXXXX</span>
-            <button class="copy-btn" id="copyButton">COPY</button>
-        </div>
-    </div>
-    
     <p>
         A fun meme token built on the TON Blockchain. TON's Coolest Crypto — <b>$SLT: SLOW DOWN, AND STACK UP.</b>
     </p>
