@@ -50,7 +50,6 @@ body {
     box-shadow: 0 0 35px rgba(0, 255, 191, 0.9); 
     z-index: 60;
     margin-top: 15px; 
-    /* Logo altındaki boşluk azaltıldı */
     margin-bottom: 5px; 
     transition: transform 0.3s;
 }
@@ -59,18 +58,25 @@ body {
 }
 
 /* ----------------------------------
-// LANGUAGE SWITCHER (YENİ EKLENDİ)
+// LANGUAGE SWITCHER (DÜZELTİLMİŞ)
 ----------------------------------- */
 .language-switcher {
     /* Bayraklar için logonun altından ve h2'nin üstünden boşluk */
     margin: 10px auto 10px auto; 
     text-align: center;
+    
+    /* Yeni Düzeltmeler: Z-Index ve Position eklenmesi */
+    position: relative;
+    z-index: 65; 
+    
+    /* Yeni Düzeltmeler: Emoji desteğini güçlendirmek için font eklenmesi */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .language-switcher a {
     text-decoration: none;
-    font-size: 28px; /* Bayrak emoji boyutu */
-    margin: 0 7px;
+    font-size: 32px; /* Boyut 32px'e yükseltildi */
+    margin: 0 10px; /* Boşluk 10px'e yükseltildi */
     opacity: 0.6;
     transition: opacity 0.3s, transform 0.3s;
     display: inline-block;
@@ -228,22 +234,21 @@ nav a:hover {
 // SOCIAL ICONS
 ----------------------------------- */
 .social-icons {
-    margin: 20px auto; /* Kontrat adresinden boşluk */
+    margin: 20px auto; 
     text-align: center;
-    /* Kontrat kutusuyla aynı genişlikte tutmak için (mobil uyumlu) */
     max-width: 550px; 
 }
 
 .social-icons a {
-    color: #00ffbf; /* Sloth teması rengi */
-    font-size: 28px; /* Simge boyutu */
-    margin: 0 15px; /* Simgeler arası boşluk */
+    color: #00ffbf; 
+    font-size: 28px; 
+    margin: 0 15px; 
     transition: color 0.3s, transform 0.3s;
     display: inline-block;
 }
 
 .social-icons a:hover {
-    color: #4dfff7; /* Hafif bir parlama efekti */
+    color: #4dfff7; 
     transform: scale(1.2) translateY(-2px);
     text-shadow: 0 0 10px #00ffbf;
 }
@@ -700,7 +705,7 @@ footer p {
 
     /* LANGUAGE SWITCHER MOBILE STYLES */
     .language-switcher a {
-        font-size: 24px; 
+        font-size: 28px; /* Mobil ve masaüstü boyutu aynı yapıldı */
         margin: 0 5px;
     }
 
@@ -725,7 +730,7 @@ footer p {
     /* SOCIAL ICONS MOBILE STYLES */
     .social-icons {
          margin: 15px auto;
-         max-width: 95%; /* Mobil genişlik ayarı */
+         max-width: 95%; 
     }
     .social-icons a {
         font-size: 24px; 
