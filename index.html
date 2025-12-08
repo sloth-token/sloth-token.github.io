@@ -110,10 +110,12 @@
     // LANGUAGE SELECTOR STYLES 
     ----------------------------------- */
     .language-selector {
+        /* KESİN DÜZELTME: Z-index bağlamını oluşturmak için relative eklendi */
+        position: relative;
         z-index: 40; 
         text-align: center;
         filter: drop-shadow(0 0 10px rgba(0, 255, 191, 0.4)); 
-        margin: 20px auto; /* Normal akışta yeterli boşluk */
+        margin: 20px auto; 
     }
 
     .lang-button {
@@ -146,7 +148,7 @@
         left: 50%;
         transform: translateX(-50%);
         margin-top: 5px;
-        /* KESİN DÜZELTME: Opak arka plan ve z-index 9999 */
+        /* KESİN DÜZELTME: Opak arka plan ve z-index 99999 */
         background-color: #030a12; 
         opacity: 1; 
         border: 1px solid #00ffbf;
@@ -155,7 +157,7 @@
         overflow: hidden;
         min-width: 150px;
         display: none; 
-        z-index: 9999; /* Z-INDEX ÇOK YÜKSELTİLDİ */
+        z-index: 99999; /* Z-INDEX KESİNLİKLE EN YÜKSEK YAPILDI */
         text-align: left;
     }
 
