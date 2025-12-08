@@ -110,7 +110,6 @@
     // LANGUAGE SELECTOR STYLES 
     ----------------------------------- */
     .language-selector {
-        /* KESİN DÜZELTME: Z-index bağlamını oluşturmak için relative eklendi */
         position: relative;
         z-index: 40; 
         text-align: center;
@@ -148,7 +147,6 @@
         left: 50%;
         transform: translateX(-50%);
         margin-top: 5px;
-        /* KESİN DÜZELTME: Opak arka plan ve z-index 99999 */
         background-color: #030a12; 
         opacity: 1; 
         border: 1px solid #00ffbf;
@@ -157,7 +155,7 @@
         overflow: hidden;
         min-width: 150px;
         display: none; 
-        z-index: 99999; /* Z-INDEX KESİNLİKLE EN YÜKSEK YAPILDI */
+        z-index: 99999; 
         text-align: left;
     }
 
@@ -186,7 +184,7 @@
     ----------------------------------- */
     .hero {
         text-align: center;
-        /* YENİ DÜZENLEME: İçeriği yukarı çekmek için padding azaltıldı */
+        /* DÜZENLEME: İçeriği yukarı çekmek için padding azaltıldı */
         padding-top: 110px; 
         padding-bottom: 100px;
         padding-left: 20px;
@@ -262,7 +260,6 @@
     /* CONTRAC ADDRESS STYLES (DESKTOP) */
     .contract-container {
         max-width: 550px;
-        /* Alttaki dil seçici için yeterli boşluk */
         margin: 30px auto 10px auto; 
         position: relative; 
     }
@@ -433,12 +430,6 @@
     .highlight {
         color: #00ffbf; 
         font-weight: 600;
-    }
-    
-    /* Bold text in Manifesto for emphasis */
-    .manifesto-text p b {
-        font-weight: 600; 
-        color: #4dfff7; 
     }
 
     .manifesto-text p {
@@ -644,8 +635,8 @@
         font-weight: 300; 
     }
 
-    /* Bold text in FAQ */
-    .faq-answer p b, .creative-highlight {
+    /* Bold text style for highlights (used to replace <b>) */
+    .creative-highlight { 
         font-weight: 600; 
         color: #4dfff7; 
     }
@@ -683,7 +674,7 @@
         
         /* Hero Padding Mobile */
         .hero {
-             /* YENİ DÜZENLEME: İçeriği yukarı çekmek için padding azaltıldı (Mobile) */
+             /* DÜZENLEME: İçeriği yukarı çekmek için padding azaltıldı (Mobile) */
              padding-top: 70px; 
         }
 
@@ -913,7 +904,7 @@
         </div>
     </div>
     <p>
-        A fun meme token built on the TON Blockchain. TON's Coolest Crypto — <b>$SLT: SLOW DOWN, AND STACK UP.</b>
+        A fun meme token built on the TON Blockchain. TON's Coolest Crypto — <span class="creative-highlight">$SLT: SLOW DOWN, AND STACK UP.</span>
     </p>
 
     <div class="btns">
@@ -936,18 +927,18 @@
 
             <div class="manifesto-text">
                 <p>
-                    Hello everyone! 🌿 Why aren't we diving straight into those chaotic, fast <b>DEXs</b>? Because I, as you know, love to take everything **slow**!
-                    <br>Our strategy is very simple: First, we will comfortably settle on the most comfortable branch of our <a href="https://t.me/blum/" target="_blank" class="highlight"><b>Blum</b></a> tree. We are not gathering speedy day-traders, but loyal friends who, just like me, love to settle in for a long, peaceful **HODL** nap. Remember: **A Sloth in a hurry only stumbles on the road!** Come, let's grow slowly, steadily, and solidly, together.
+                    Hello everyone! 🌿 Why aren't we diving straight into those chaotic, fast <span class="creative-highlight">DEXs</span>? Because I, as you know, love to take everything <span class="creative-highlight">slow</span>!
+                    <br>Our strategy is very simple: First, we will comfortably settle on the most comfortable branch of our <a href="https://t.me/blum/" target="_blank" class="highlight">Blum</a> tree. We are not gathering speedy day-traders, but loyal friends who, just like me, love to settle in for a long, peaceful <span class="creative-highlight">HODL</span> nap. Remember: <span class="creative-highlight">A Sloth in a hurry only stumbles on the road!</span> Come, let's grow slowly, steadily, and solidly, together.
                 </p>
                 
                 <h3>🎯 OUR FIRST GOAL: A LONG WINTER SLEEP (<span class="highlight">1,500 TON</span>)</h3>
                 <p>
                     Let's get a little lazier. When our liquidity pool reaches the sweet weight of exactly <span class="highlight">1,500 TON</span>... *That's* when we can slowly start swaying towards <a href="https://app.ston.fi/swap" target="_blank" class="highlight"><b>Ston.fi</b></a>, taking a giant Sloth step.
-                    <br>Our ultimate goal is simple: to **take our place** as the most respected, most patient, and highest-mcap meme figure in the entire TON Ecosystem.
+                    <br>Our ultimate goal is simple: to <span class="creative-highlight">take our place</span> as the most respected, most patient, and highest-mcap meme figure in the entire TON Ecosystem.
                 </p>
                 
                 <p style="font-size: 20px; font-weight: bold; color: #00ffbf;">
-                    Because we are $SLT: <b>SLOW DOWN, AND STACK UP!</b>
+                    Because we are $SLT: SLOW DOWN, AND STACK UP!
                 </p>
             </div>
         </div>
@@ -1001,7 +992,7 @@
             <ol>
                 <li>
                     <strong>🌳 BUILD YOUR TREE HOUSE (CREATE A WALLET)</strong>
-                    <p>Don't get too excited... Take a deep breath first. <b>Gently</b> download the <a href="https://tonkeeper.com/" target="_blank" class="highlight"><b>Tonkeeper</b></a> wallet app or extension. Take your time to complete the setup for your wallet. Because this wallet is your most peaceful place to have your precious <b>$SLT HODL</b> nap.</p>
+                    <p>Don't get too excited... Take a deep breath first. <b>Gently</b> download the <a href="https://tonkeeper.com/" target="_blank" class="highlight"><b>Tonkeeper</b></a> wallet app or extension. Take your time to complete the setup for your wallet. Because this wallet is your most peaceful place to have your precious <span class="creative-highlight">$SLT HODL</span> nap.</p>
                 </li>
                 <li>
                     <strong>🍃 GATHER YOUR SLOTH FUEL (GET TON)</strong>
@@ -1009,11 +1000,11 @@
                 </li>
                 <li>
                     <strong>🌄 FIND YOUR PEACEFUL SPOT ON STON.FI</strong>
-                    <p>Now... Open Google Chrome and <b>slowly</b> navigate to <a href="https://app.ston.fi/swap" target="_blank" class="highlight">Ston.fi</a>. <b>Connect</b> your Tonkeeper wallet to the platform. Then, <b>lightly</b> paste the correct $SLT Contract Address (the one you copied from our site) into Ston.fi, select $SLT, and confirm the transaction. When your Tonkeeper wallet asks you to sign the transaction, <b>sign it</b> and maintain your calm. <span style="font-size: 14px; opacity: 0.6;">(A Little Sloth Note: Checking the contract address's accuracy <b>twice</b> is essential for a long and peaceful HODL sleep.)</span></p>
+                    <p>Now... Open Google Chrome and <span class="creative-highlight">slowly</span> navigate to <a href="https://app.ston.fi/swap" target="_blank" class="highlight">Ston.fi</a>. <span class="creative-highlight">Connect</span> your Tonkeeper wallet to the platform. Then, <span class="creative-highlight">lightly</span> paste the correct $SLT Contract Address (the one you copied from our site) into Ston.fi, select $SLT, and confirm the transaction. When your Tonkeeper wallet asks you to sign the transaction, <span class="creative-highlight">sign it</span> and maintain your calm. <span style="font-size: 14px; opacity: 0.6;">(A Little Sloth Note: Checking the contract address's accuracy <span class="creative-highlight">twice</span> is essential for a long and peaceful HODL sleep.)</span></p>
                 </li>
                 <li>
                     <strong>💚 SWAP TON FOR $SLT</strong>
-                    <p>Here is the most relaxing part: <b>Patiently</b> swap your TON for $SLT. We love living slow, but our transactions are strangely <b>FAST!</b> We love $SLT and TON very much, and since you completed this transaction, you are now one of the <b>most patient</b> members of the Sloth HODL family.</p>
+                    <p>Here is the most relaxing part: <span class="creative-highlight">Patiently</span> swap your TON for $SLT. We love living slow, but our transactions are strangely <span class="creative-highlight">FAST!</span> We love $SLT and TON very much, and since you completed this transaction, you are now one of the <span class="creative-highlight">most patient</span> members of the Sloth HODL family.</p>
                 </li>
             </ol>
         </div>
@@ -1032,7 +1023,7 @@
                     What is Sloth Token ($SLT)? <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Ah, $SLT? You're curious, aren't you? But don't rush! We are <b>community-supported sloths</b> chilling in the most comfortable and green corner of the TON Blockchain. Our philosophy? <b>"Slow Down, and Stack Up Big!"</b> The chaotic <b>DEX</b> race is not for us. We prefer taking a long, peaceful <b>HODL</b> nap in our wallets. We are transparent, and we favor fair distribution. Because the strongest stance is the calmest one.</p>
+                    <p>Ah, $SLT? You're curious, aren't you? But don't rush! We are <span class="creative-highlight">community-supported sloths</span> chilling in the most comfortable and green corner of the TON Blockchain. Our philosophy? <span class="creative-highlight">"Slow Down, and Stack Up Big!"</span> The chaotic <span class="creative-highlight">DEX</span> race is not for us. We prefer taking a long, peaceful <span class="creative-highlight">HODL</span> nap in our wallets. We are transparent, and we favor fair distribution. Because the strongest stance is the calmest one.</p>
                 </div>
             </div>
 
@@ -1041,7 +1032,7 @@
         Why does $SLT choose Slowness over Social Media Rush? <span class="faq-toggle">+</span>
     </div>
     <div class="faq-answer">
-        <p>Oh, social media? Too noisy... Too fast... All those notifications, all that rushing... Not for us. The deepest secret of crypto is <b>anonymity</b>. Besides, the best <b>viral marketing</b> is done completely organically by our loyal <b>HODL army</b>. Our energy is focused on building a stable <b>community</b>, not stressing over keyboard wars. Look, we are slowly opening up! Our official <b>X (Twitter)</b> page is now active, providing a gentle hum of information. Our cozy <b>Telegram</b> community will follow gently later, when we're ready for more noise. Our slow and quiet progression is **NOT** a lack of effort; it's our maximalist marketing strategy. For us, **sincerity and organic growth** are far more valuable than temporary noise. On the contrary, we seek <b>maximalist comfort</b> and serenity. And this website? We are using this GitHub branch as an anonymous, quiet perch. We are grateful to <a href="https://github.com/" target="_blank" class="highlight">GitHub</a> for providing such a quiet, peaceful place for our slow movement.</p>
+        <p>Oh, social media? Too noisy... Too fast... All those notifications, all that rushing... Not for us. The deepest secret of crypto is <span class="creative-highlight">anonymity</span>. Besides, the best <span class="creative-highlight">viral marketing</span> is done completely organically by our loyal <span class="creative-highlight">HODL army</span>. Our energy is focused on building a stable <span class="creative-highlight">community</span>, not stressing over keyboard wars. Look, we are slowly opening up! Our official <span class="creative-highlight">X (Twitter)</span> page is now active, providing a gentle hum of information. Our cozy <span class="creative-highlight">Telegram</span> community will follow gently later, when we're ready for more noise. Our slow and quiet progression is <span class="creative-highlight">NOT</span> a lack of effort; it's our maximalist marketing strategy. For us, <span class="creative-highlight">sincerity and organic growth</span> are far more valuable than temporary noise. On the contrary, we seek <span class="creative-highlight">maximalist comfort</span> and serenity.</p>
     </div>
 </div>
             
@@ -1050,7 +1041,7 @@
                     Will the $SLT token be listed on major exchanges (CEX)? <span class="faq-toggle">+
                 </div>
                 <div class="faq-answer">
-                    <p><b>Absolutely not.</b> Why? We don't want to enter the complicated and tiring world of major exchanges. We believe that <b>anonymity is power</b> and that <b>decentralization</b> is paramount. Our only goal is to stay peacefully on <b>DEXs</b> (Decentralized Exchanges) with high, healthy liquidity <b>for life</b>. For us, comfort comes before popularity.</p>
+                    <p><span class="creative-highlight">Absolutely not.</span> Why? We don't want to enter the complicated and tiring world of major exchanges. We believe that <span class="creative-highlight">anonymity is power</span> and that <span class="creative-highlight">decentralization</span> is paramount. Our only goal is to stay peacefully on <span class="creative-highlight">DEXs</span> (Decentralized Exchanges) with high, healthy liquidity <span class="creative-highlight">for life</span>. For us, comfort comes before popularity.</p>
                 </div>
             </div>
 
@@ -1059,9 +1050,9 @@
                     Will $SLT Token Make Us Rich? <span class="faq-toggle">+
                 </div>
                 <div class="faq-answer">
-                    <p>Look friends, let's be honest... The first and biggest goal of the $SLT Token is to offer a <b>peaceful experience</b> and a long-term <b>journey</b>. We want to progress slowly with our entire community and enjoy this experience to the fullest. Although we were created for fun, we certainly harbor <b>big market cap dreams</b>! However, never forget: We make **no claims** to anyone and absolutely <b>do not offer investment advice</b>.</p>
-                    <p>$SLT Tokens are **not securities** of any kind. They do not represent the right to vote, govern, or share profits or revenues of any entity. Furthermore, $SLT Tokens **do not represent ownership of any physical asset.**</p>
-                    <p style="font-weight: 600;">So, <b>slow down, stack up, and enjoy the ride!</b></p>
+                    <p>Look friends, let's be honest... The first and biggest goal of the $SLT Token is to offer a <span class="creative-highlight">peaceful experience</span> and a long-term <span class="creative-highlight">journey</span>. We want to progress slowly with our entire community and enjoy this experience to the fullest. Although we were created for fun, we certainly harbor <span class="creative-highlight">big market cap dreams</span>! However, never forget: We make <span class="creative-highlight">no claims</span> to anyone and absolutely <span class="creative-highlight">do not offer investment advice</span>.</p>
+                    <p>$SLT Tokens are <span class="creative-highlight">not securities</span> of any kind. They do not represent the right to vote, govern, or share profits or revenues of any entity. Furthermore, $SLT Tokens <span class="creative-highlight">do not represent ownership of any physical asset.</span></p>
+                    <p style="font-weight: 600;">So, slow down, stack up, and enjoy the ride!</p>
                 </div>
             </div>
 
@@ -1070,7 +1061,7 @@
                     How can I support Sloth Token's marketing/promotion efforts? <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Look now... Don't get too tired. If you want to do something for us, find those cool, green visuals and videos we occasionally post on our site. Then, <b>slowly</b> share them on your social media. Don't rush, thinking, "I'll share it now and get rich immediately." Consistency and peace are what matter. Get the latest <b>meme materials</b> from our site—that's the trunk of our tree. Remember: <b>Your calmness is $SLT's greatest hype power.</b></p>
+                    <p>Look now... Don't get too tired. If you want to do something for us, find those cool, green visuals and videos we occasionally post on our site. Then, <span class="creative-highlight">slowly</span> share them on your social media. Don't rush, thinking, "I'll share it now and get rich immediately." <span class="creative-highlight">Consistency and peace</span> are what matter. Get the latest <span class="creative-highlight">meme materials</span> from our site—that's the trunk of our tree. Remember: <span class="creative-highlight">Your calmness is $SLT's greatest hype power.</span></p>
                 </div>
             </div>
 
