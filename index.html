@@ -9,9 +9,738 @@
 
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
-<link rel="stylesheet" href="styles.css"> 
 
+<style>
+    /* ----------------------------------
+    // GLOBAL STYLES & ANIMATION ENHANCEMENTS
+    ----------------------------------- */
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background: #030a12;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        overflow-x: hidden; 
+    }
+
+    /* FOREST THEME BACKGROUND GLOWS */
+    .glow1, .glow2 {
+        position: fixed;
+        width: 80vh;
+        height: 80vh;
+        filter: blur(350px);
+        z-index: -1;
+        opacity: 0.4; 
+        border-radius: 50%;
+    }
+    .glow1 {
+        top: -10vh;
+        left: -10vh;
+        background: #00ffbf; 
+        animation: pulse1 8s infinite alternate;
+    }
+    .glow2 {
+        bottom: -10vh;
+        right: -10vh;
+        background: #00a0a0; 
+        animation: pulse2 10s infinite alternate;
+    }
+
+    @keyframes pulse1 { from {opacity:0.35;} to {opacity:0.55;} } 
+    @keyframes pulse2 { from {opacity:0.30;} to {opacity:0.50;} } 
+
+    /* LOGO */
+    .logo {
+        width: 160px; 
+        height: 160px; 
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 0 35px rgba(0, 255, 191, 0.9); 
+        z-index: 60;
+        margin-top: 15px; 
+        margin-bottom: 15px; 
+        transition: transform 0.3s;
+    }
+    .logo:hover {
+        transform: scale(1.1); 
+    }
+
+
+    /* ----------------------------------
+    // NAVIGATION
+    ----------------------------------- */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(3, 10, 18, 0.98);
+        backdrop-filter: blur(8px);
+        padding: 15px 50px;
+        z-index: 50;
+        display: flex;
+        justify-content: center;
+        box-shadow: 0 2px 20px rgba(0, 255, 191, 0.2);
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 17px;
+        font-weight: 600;
+        transition: color 0.3s, transform 0.3s;
+        border-bottom: 3px solid transparent;
+        padding-bottom: 5px;
+    }
+
+    nav a:hover {
+        color: #00ffbf; 
+        border-bottom-color: #00ffbf;
+        transform: translateY(-2px);
+    }
+
+    /* ----------------------------------
+    // SECTION STYLES
+    ----------------------------------- */
+    .hero {
+        text-align: center;
+        padding-top: 150px; 
+        padding-bottom: 100px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* HEADERS: $SLT (h1) and SLOTH TOKEN (sub-h1) */
+    .hero h1 { 
+        font-size: 68px; 
+        font-weight: 800;
+        text-shadow: 0 0 25px #00ffbf; 
+        margin: 0;
+        padding: 0;
+        letter-spacing: 2px;
+        line-height: 1;
+        margin-bottom: 5px; 
+    }
+    .hero .sub-h1 { 
+        font-size: 30px; 
+        font-weight: 600;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        opacity: 0.9;
+        color: #00ffbf;
+        text-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
+    }
+
+    .hero p {
+        font-size: 20px; 
+        opacity: 0.9;
+        max-width: 700px;
+        margin: 15px auto;
+        line-height: 1.5; 
+        font-weight: 400; 
+    }
+    
+    /* CONTRAC ADDRESS STYLES (DESKTOP) */
+    .contract-container {
+        max-width: 550px;
+        margin: 30px auto 40px auto;
+        position: relative; 
+    }
+    .contract-label {
+        font-size: 14px;
+        font-weight: 700;
+        color: #030a12;
+        padding: 2px 10px;
+        background: #00ffbf;
+        border-radius: 5px;
+        position: absolute;
+        top: -12px; 
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        box-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
+    }
+    .contract-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 255, 191, 0.1);
+        border: 1px solid rgba(0, 255, 191, 0.4);
+        border-radius: 8px;
+        padding: 10px 15px;
+        gap: 10px;
+        box-shadow: 0 0 15px rgba(0, 255, 191, 0.3);
+    }
+
+    .contract-address {
+        flex-grow: 1;
+        font-size: 16px;
+        font-weight: 500;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #00ffbf;
+        cursor: pointer;
+    }
+
+    .copy-btn {
+        background: #00ffbf;
+        color: #030a12;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+    }
+
+    .copy-btn:hover {
+        background: #4dfff7;
+        transform: translateY(-1px);
+    }
+
+    /* BUTTONS */
+    .btns {
+        margin-top: 35px;
+        /* Buton altındaki boşluk ÇOK FAZLA ARTIRILDI (70px) */
+        margin-bottom: 70px; 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 14px 30px;
+        border-radius: 10px; 
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        color: white;
+        border: 2px solid #00ffbf; 
+        background: rgba(0, 255, 191, 0.1); 
+        backdrop-filter: blur(5px);
+        box-shadow: 0 0 20px rgba(0,255,191,0.5);
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+    .btn:hover {
+        box-shadow: 0 0 35px rgba(0,255,191,1);
+        background: rgba(0, 255, 191, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* SECTION BASICS */
+    .section-content {
+        /* Bölüm dolgusu SIFIRLANDI */
+        padding: 0px 0; 
+        max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        /* ANCHOR FIX: Kaydırma sırasında menü yüksekliği kadar boşluk bırakır */
+        scroll-margin-top: 100px; 
+    }
+    
+    /* Content Wrapper */
+    .content-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 60px; 
+    }
+
+    /* Section Main Headers */
+    .section-content h2 {
+        font-size: 40px; 
+        font-weight: 800;
+        text-shadow: 0 0 15px #00ffbf;
+        margin-bottom: 20px; 
+        color: #00ffbf; 
+    }
+    
+    /* Manifesto Section */
+    .manifesto-section {
+        /* Bölüm dolgusu SIFIRLANDI */
+        padding: 0px 0; 
+        text-align: center;
+        /* ANCHOR FIX: Kaydırma sırasında menü yüksekliği kadar boşluk bırakır */
+        scroll-margin-top: 100px; 
+    }
+
+    /* Manifesto Header */
+    .manifesto-section h2 {
+        font-size: 40px; 
+        font-weight: 800;
+        text-shadow: 0 0 15px #00ffbf;
+        margin-bottom: 20px; 
+        color: #00ffbf; 
+        text-align: center; 
+    }
+    
+    /* Manifesto Content Area */
+    .manifesto-content-area {
+        display: flex;
+        align-items: flex-start; 
+        justify-content: center;
+        gap: 60px;
+        max-width: 1000px; 
+        margin: 0 auto; 
+        padding: 0 20px; 
+    }
+
+    /* VIDEO SIZE AND AREA */
+    .manifesto-video {
+        flex-basis: 300px; 
+        flex-shrink: 0;
+    }
+    .manifesto-video video {
+        width: 100%; 
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0,255,191,0.7); 
+    }
+    
+
+    /* Manifesto Text Block */
+    .manifesto-text {
+        flex-grow: 1; 
+        max-width: 600px; 
+        text-align: left; 
+    }
+
+    /* Manifesto h3 */
+    .manifesto-text h3 {
+        margin-top: 0; 
+        font-size: 28px; 
+        color: #00ffbf;
+    }
+
+
+    .highlight {
+        color: #00ffbf; 
+        font-weight: 600;
+    }
+    
+    /* Bold text in Manifesto for emphasis */
+    .manifesto-text p b {
+        font-weight: 600; 
+        color: #4dfff7; 
+    }
+
+    .manifesto-text p {
+        font-size: 17px; 
+        opacity: 0.9;
+        line-height: 1.7;
+        margin-bottom: 30px; 
+        font-weight: 300; 
+    }
+    
+    /* ----------------------------------
+    // HOW TO BUY (Ordered List)
+    ----------------------------------- */
+    .buy-steps {
+        max-width: 800px;
+        margin: 60px auto;
+        text-align: left;
+    }
+    .buy-steps ol {
+        list-style-type: none; 
+        counter-reset: step-counter;
+        padding: 0;
+    }
+    .buy-steps li {
+        counter-increment: step-counter;
+        margin-bottom: 40px;
+        position: relative;
+        font-size: 18px; 
+        line-height: 1.5;
+        font-weight: 400;
+        background: rgba(0, 255, 191, 0.05);
+        padding: 20px 20px 20px 80px; 
+        border-radius: 10px;
+    }
+    .buy-steps li strong {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .buy-steps li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 15px; 
+        top: 50%;
+        transform: translateY(-50%);
+        background: #00ffbf;
+        color: #030a12;
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+        border-radius: 50%;
+        font-weight: 800;
+        font-size: 22px;
+        box-shadow: 0 0 15px #00ffbf;
+        border: 3px solid #030a12;
+        z-index: 2; 
+    }
+    .buy-steps p {
+        margin-top: 5px;
+        font-size: 15px; 
+        opacity: 0.85;
+    }
+    .buy-steps a {
+        text-decoration: none;
+    }
+
+    /* ----------------------------------
+    // ROADMAP
+    ----------------------------------- */
+    .roadmap-container {
+        max-width: 1000px; 
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .roadmap-content-wrapper {
+        display: flex;
+        align-items: flex-start; 
+        justify-content: center;
+        gap: 60px; 
+        margin-top: 40px;
+    }
+    .roadmap-image-wrapper {
+        flex: 0 0 30%; 
+        max-width: 300px;
+        text-align: center;
+        display: flex;
+        flex-direction: column; 
+        gap: 140px; 
+    }
+    .roadmap-image-wrapper img {
+        width: 100%; 
+        height: auto;
+        border-radius: 14px;
+        box-shadow: 0 0 25px rgba(0, 255, 191, 0.7);
+        transition: transform 0.3s;
+    }
+    .roadmap-image-mobile {
+        display: none;
+    }
+    .roadmap-list {
+        flex: 1; 
+        max-width: 650px; 
+        text-align: left;
+    }
+    .roadmap-list ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    .roadmap-list li {
+        margin-bottom: 20px; 
+        line-height: 1.7;
+        padding-left: 35px; 
+        position: relative;
+        font-size: 17px; 
+        font-weight: 400;
+    }
+    .roadmap-list h3 {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        font-size: 26px; 
+        font-weight: 600;
+        color: #00ffbf;
+    }
+
+    /* ICON STYLES */
+    .roadmap-list li::before {
+        position: absolute;
+        left: 0;
+        font-size: 22px;
+        line-height: 1.6;
+        transition: color 0.3s;
+    }
+    
+    /* ✅ - COMPLETED TASK */
+    .roadmap-list li:first-child::before {
+        content: '✅'; 
+        text-shadow: 0 0 10px #00ffbf;
+    }
+    
+    /* 🚀 - GOALS */
+    .roadmap-list li:not(:first-child)::before {
+        content: '🚀';
+        text-shadow: 0 0 8px rgba(255, 204, 0, 0.9); 
+    }
+
+    /* ----------------------------------
+    // FAQ (FREQUENTLY ASKED QUESTIONS)
+    ----------------------------------- */
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .faq-item {
+        margin-bottom: 15px;
+        border: 1px solid rgba(0, 255, 191, 0.3);
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(0, 255, 191, 0.05);
+        transition: all 0.3s;
+    }
+
+    .faq-question {
+        padding: 18px; 
+        font-size: 17px; 
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(0, 255, 191, 0.1);
+        color: #00ffbf;
+    }
+
+    .faq-question:hover {
+        background: rgba(0, 255, 191, 0.2);
+    }
+
+    .faq-toggle {
+        font-size: 24px;
+        line-height: 1;
+        transition: transform 0.3s;
+    }
+    
+    .faq-item.active .faq-toggle {
+        transform: rotate(45deg);
+    }
+
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+        padding: 0 20px;
+    }
+    
+    .faq-answer p {
+        padding: 10px 0 20px 0;
+        font-size: 15px; 
+        opacity: 0.9;
+        font-weight: 300; 
+    }
+
+    /* Bold text in FAQ */
+    .faq-answer p b {
+        font-weight: 600; 
+        color: #4dfff7; 
+    }
+
+    /* ----------------------------------
+    // FOOTER
+    ----------------------------------- */
+    footer {
+        padding: 40px 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.7);
+        border-top: 2px solid rgba(0, 255, 191, 0.2);
+        margin-top: 80px;
+    }
+    footer p {
+        margin: 5px 0;
+        font-size: 15px;
+        opacity: 0.8;
+        font-weight: 300;
+    }
+
+    /* ----------------------------------
+    // MOBILE RESPONSIVENESS
+    ----------------------------------- */
+    @media (max-width: 850px) {
+        
+        /* Navigation */
+        nav {
+            padding: 15px 5px;
+        }
+        nav a {
+            margin: 0 5px;
+            font-size: 12px; 
+        }
+        
+        /* Hero Padding Mobile */
+        .hero {
+             padding-top: 100px; 
+        }
+
+        /* Font and Headers */
+        .hero h1 { 
+            font-size: 36px; 
+            letter-spacing: normal; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            text-overflow: ellipsis;
+            padding: 0 10px; 
+            margin-bottom: 5px;
+        }
+        .hero .sub-h1 { 
+            font-size: 22px; 
+        }
+        
+        /* HERO PARAGRAPH FIX */
+        .hero p {
+             font-size: 16px; 
+             white-space: normal; 
+             word-wrap: break-word;
+             padding: 0 5px;
+        }
+
+        /* BUTTONS MOBILE LAYOUT */
+        .btns {
+            gap: 8px; 
+            /* Buton altındaki boşluk ÇOK FAZLA ARTIRILDI (70px) */
+            margin-bottom: 70px; 
+        }
+        .btn {
+            padding: 10px 18px;
+            font-size: 14px;
+            flex-grow: 1; 
+            min-width: 100px; 
+        }
+        
+        /* Section Padding Mobile (Bölüm dolgusu SIFIRLANDI) */
+        .section-content, .manifesto-section {
+            padding: 0px 0; 
+            /* Mobil menü de 60-70px civarı olduğu için 80px yeterli olur */
+            scroll-margin-top: 80px; 
+        }
+        .content-wrapper {
+             padding: 0 20px; 
+        }
+        
+        /* Manifesto Mobile Layout */
+        .manifesto-section h2 {
+            margin-bottom: 15px; 
+        }
+        .manifesto-content-area {
+            flex-direction: column; 
+            gap: 40px;
+            padding: 0; 
+        }
+        .manifesto-video {
+            flex-basis: auto; 
+            width: 100%; 
+            max-width: 300px; 
+            margin: 0 auto; 
+        }
+        .manifesto-text {
+             padding: 0; 
+             max-width: 100%; 
+             text-align: left; 
+        }
+        .manifesto-text p {
+            font-size: 15px;
+        }
+        .manifesto-text h3 {
+             font-size: 20px;
+        }
+        
+        /* Section Content H2 Mobile */
+        .section-content h2 {
+            font-size: 32px; 
+            margin-bottom: 15px; 
+        }
+        
+        /* LOGO MOBILE SIZE */
+        .logo {
+            width: 120px; 
+            height: 120px;
+        }
+        
+        /* CONTRACT ADDRESS MOBILE STYLES */
+        .contract-container {
+            max-width: 95%; 
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 10px; 
+        }
+        .contract-box {
+            padding: 8px 10px;
+        }
+        .contract-address {
+            font-size: 12px; 
+        }
+        .copy-btn {
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+
+        /* How to Buy */
+        .buy-steps {
+        }
+        .buy-steps li {
+            padding: 15px 15px 15px 60px; 
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .buy-steps li::before {
+            left: 10px; 
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 18px;
+        }
+        .buy-steps p {
+             font-size: 14px;
+        }
+
+        /* ROADMAP MOBILE LAYOUT */
+        .roadmap-content-wrapper {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .roadmap-image-wrapper {
+            display: none; 
+        }
+        .roadmap-list {
+            max-width: 100%; 
+            padding: 0;
+        }
+        .roadmap-list h3 {
+            font-size: 22px;
+            text-align: center; 
+        }
+        .roadmap-list li {
+            font-size: 15px;
+        }
+         /* Mobile images */
+        .roadmap-image-mobile {
+            display: block; 
+            width: 90%; 
+            max-width: 350px; 
+            margin: 25px auto 15px auto; 
+            border-radius: 14px;
+            box-shadow: 0 0 25px rgba(0, 255, 191, 0.7);
+        }
+        .roadmap-list ul {
+            text-align: left;
+            margin: 0;
+            padding: 0;
+            max-width: 400px; 
+            margin: 0 auto; 
+        }
+        
+        /* FAQ Mobile */
+        .faq-question {
+            padding: 15px;
+            font-size: 15px;
+        }
+    }
+</style>
 </head>
 
 <body>
@@ -33,24 +762,6 @@
 
     <img src="slttokenlogo.jpeg" class="logo" alt="Sloth Token Logo">
     
-    <div class="language-switcher">
-        <a href="index.html" class="active" title="English">
-            <img src="flags/gb.svg" alt="English Flag">
-        </a>
-        <a href="ru.html" title="Русский">
-            <img src="flags/ru.svg" alt="Russian Flag">
-        </a>
-        <a href="az.html" title="Azərbaycanca">
-            <img src="flags/az.svg" alt="Azerbaijani Flag">
-        </a>
-        <a href="es.html" title="Español">
-            <img src="flags/es.svg" alt="Spanish Flag">
-        </a>
-        <a href="tr.html" title="Türkçe">
-            <img src="flags/tr.svg" alt="Turkish Flag">
-        </a>
-    </div>
-
     <h2 class="sub-h1">SLOTH TOKEN</h2>
     
     <div class="contract-container">
@@ -60,15 +771,9 @@
             <button class="copy-btn" id="copyButton">COPY</button>
         </div>
     </div>
-
-    <div class="social-icons">
-        <a href="https://x.com/sloth_token_resmi" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-        <a href="https://t.me/sloth_token_resmi" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-        <a href="https://github.com/sloth-token" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-    </div>
     
     <p>
-        A fun meme token built on the TON Blockchain. TON's Coolest Crypto — <span class="creative-highlight">$SLT: SLOW DOWN, AND STACK UP.</span>
+        A fun meme token built on the TON Blockchain. TON's Coolest Crypto — <b>$SLT: SLOW DOWN, AND STACK UP.</b>
     </p>
 
     <div class="btns">
@@ -91,18 +796,18 @@
 
             <div class="manifesto-text">
                 <p>
-                    Hello everyone! 🌿 Why aren't we diving straight into those chaotic, fast <span class="creative-highlight">DEXs</span>? Because I, as you know, love to take everything <span class="creative-highlight">slow</span>!
-                    <br>Our strategy is very simple: First, we will comfortably settle on the most comfortable branch of our <a href="https://t.me/blum/" target="_blank" class="highlight">Blum</a> tree. We are not gathering speedy day-traders, but loyal friends who, just like me, love to settle in for a long, peaceful <span class="creative-highlight">HODL</span> nap. Remember: "<span class="creative-highlight">A Sloth in a hurry only stumbles on the road!</span>" Come, let's grow slowly, steadily, and solidly, together.
+                    Hello everyone! 🌿 Why aren't we diving straight into those chaotic, fast <b>DEXs</b>? Because I, as you know, love to take everything **slow**!
+                    <br>Our strategy is very simple: First, we will comfortably settle on the most comfortable branch of our <a href="https://t.me/blum/" target="_blank" class="highlight"><b>Blum</b></a> tree. We are not gathering speedy day-traders, but loyal friends who, just like me, love to settle in for a long, peaceful **HODL** nap. Remember: **A Sloth in a hurry only stumbles on the road!** Come, let's grow slowly, steadily, and solidly, together.
                 </p>
                 
                 <h3>🎯 OUR FIRST GOAL: A LONG WINTER SLEEP (<span class="highlight">1,500 TON</span>)</h3>
                 <p>
-                    Let's get a little lazier. When our liquidity pool reaches the sweet weight of exactly <span class="highlight">1,500 TON</span>... *That's* when we can slowly start swaying towards <a href="https://app.ston.fi/swap" target="_blank" class="highlight">Ston.fi</a>, taking a giant Sloth step.
-                    <br>Our ultimate goal is simple: to <span class="creative-highlight">take our place</span> as the most respected, most patient, and highest-mcap meme figure in the entire TON Ecosystem.
+                    Let's get a little lazier. When our liquidity pool reaches the sweet weight of exactly <span class="highlight">1,500 TON</span>... *That's* when we can slowly start swaying towards <a href="https://app.ston.fi/swap" target="_blank" class="highlight"><b>Ston.fi</b></a>, taking a giant Sloth step.
+                    <br>Our ultimate goal is simple: to **take our place** as the most respected, most patient, and highest-mcap meme figure in the entire TON Ecosystem.
                 </p>
                 
-                <p style="font-size: 20px; font-weight: 600; color: #00ffbf;">
-                    Because we are $SLT: <span class="creative-highlight">SLOW DOWN, AND STACK UP!</span>
+                <p style="font-size: 20px; font-weight: bold; color: #00ffbf;">
+                    Because we are $SLT: <b>SLOW DOWN, AND STACK UP!</b>
                 </p>
             </div>
         </div>
@@ -126,7 +831,7 @@
 
                     <h3 style="color: #00ffbf;">🌲 PHASE 1: THE GREAT SLOTH STRETCH (AWAKENING)</h3>
                     <ul style="list-style: none; padding-left: 0; line-height: 2;">
-                        <li><span class="creative-highlight">Development Complete:</span> Website and launch strategy created. $SLT token developed, logo prepared, and initial promotions released.</li>
+                        <li><b>Development Complete:</b> Website and launch strategy created. $SLT token developed, logo prepared, and initial promotions released.</li>
                         
                         <li><b>Blum Deployment:</b> We found our first chill spot on <span class="highlight">Blum</span>. Target reached when our <span class="highlight">1,500 TON</span> pillow is full!</li>
                         <li><b>Reaching for Ston.fi:</b> Once the Blum den is complete, we'll slowly swing towards the <a href="https://app.ston.fi/swap" target="_blank" class="highlight">Ston.fi</a> tree. We wait until we're ready for the crowds.</li>
@@ -156,19 +861,19 @@
             <ol>
                 <li>
                     <strong>🌳 BUILD YOUR TREE HOUSE (CREATE A WALLET)</strong>
-                    <p>Don't get too excited... Take a deep breath first. <span class="creative-highlight">Gently</span> download the <a href="https://tonkeeper.com/" target="_blank" class="highlight"><b>Tonkeeper</b></a> wallet app or extension. Take your time to complete the setup for your wallet. Because this wallet is your most peaceful place to have your precious <span class="creative-highlight">HODL</span> nap.</p>
+                    <p>Don't get too excited... Take a deep breath first. <b>Gently</b> download the <a href="https://tonkeeper.com/" target="_blank" class="highlight"><b>Tonkeeper</b></a> wallet app or extension. Take your time to complete the setup for your wallet. Because this wallet is your most peaceful place to have your precious <b>$SLT HODL</b> nap.</p>
                 </li>
                 <li>
                     <strong>🍃 GATHER YOUR SLOTH FUEL (GET TON)</strong>
-                    <p>For the few seconds you are awake... Make sure you have some <b>TON</b> in your wallet to swap for $SLT. If you don't have any TON yet, don't worry. You can buy it directly from exchanges like <a href="https://www.bybit.com/" target="_blank" class="highlight">Bybit</a> or <a href="https://www.okx.com/" target="_blank" class="highlight">OKX</a>, or <span class="creative-highlight">gently</span> transfer it from another wallet/exchange to your Tonkeeper nest. There is no rush.</p>
+                    <p>For the few seconds you are awake... Make sure you have some <b>TON</b> in your wallet to swap for $SLT. If you don't have any TON yet, don't worry. You can buy it directly from exchanges like <a href="https://www.bybit.com/" target="_blank" class="highlight">Bybit</a> or <a href="https://www.okx.com/" target="_blank" class="highlight">OKX</a>, or <b>gently</b> transfer it from another wallet/exchange to your Tonkeeper nest. There is no rush.</p>
                 </li>
                 <li>
                     <strong>🌄 FIND YOUR PEACEFUL SPOT ON STON.FI</strong>
-                    <p>Now... Open Google Chrome and <span class="creative-highlight">slowly</span> navigate to <a href="https://app.ston.fi/swap" target="_blank" class="highlight">Ston.fi</a>. <span class="creative-highlight">Connect</span> your Tonkeeper wallet to the platform. Then, <span class="creative-highlight">lightly</span> paste the correct $SLT Contract Address (the one you copied from our site) into Ston.fi, select $SLT, and confirm the transaction. When your Tonkeeper wallet asks you to sign the transaction, <span class="creative-highlight">sign it</span> and maintain your calm. <span style="font-size: 14px; opacity: 0.6;">(A Little Sloth Note: Checking the contract address's accuracy <b>twice</b> is essential for a long and peaceful HODL sleep.)</span></p>
+                    <p>Now... Open Google Chrome and <b>slowly</b> navigate to <a href="https://app.ston.fi/swap" target="_blank" class="highlight">Ston.fi</a>. <b>Connect</b> your Tonkeeper wallet to the platform. Then, <b>lightly</b> paste the correct $SLT Contract Address (the one you copied from our site) into Ston.fi, select $SLT, and confirm the transaction. When your Tonkeeper wallet asks you to sign the transaction, <b>sign it</b> and maintain your calm. <span style="font-size: 14px; opacity: 0.6;">(A Little Sloth Note: Checking the contract address's accuracy <b>twice</b> is essential for a long and peaceful HODL sleep.)</span></p>
                 </li>
                 <li>
                     <strong>💚 SWAP TON FOR $SLT</strong>
-                    <p>Here is the most relaxing part: <span class="creative-highlight">Patiently</span> swap your TON for $SLT. We love living slow, but our transactions are strangely <span class="creative-highlight">FAST!</span> We love $SLT and TON very much, and since you completed this transaction, you are now one of the <span class="creative-highlight">most patient</span> members of the Sloth HODL family.</p>
+                    <p>Here is the most relaxing part: <b>Patiently</b> swap your TON for $SLT. We love living slow, but our transactions are strangely <b>FAST!</b> We love $SLT and TON very much, and since you completed this transaction, you are now one of the <b>most patient</b> members of the Sloth HODL family.</p>
                 </li>
             </ol>
         </div>
@@ -187,25 +892,25 @@
                     What is Sloth Token ($SLT)? <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Ah, $SLT? You're curious, aren't you? But don't rush! We are "<span class="creative-highlight">community-supported sloths</span>" chilling in the most comfortable and green corner of the TON Blockchain. Our philosophy? <span class="creative-highlight">"Slow Down, and Stack Up Big!"</span> The chaotic <span class="creative-highlight">DEX</span> race is not for us. We prefer taking a long, peaceful <span class="creative-highlight">HODL</span> nap in our wallets. We are transparent, and we favor fair distribution. Because the strongest stance is the calmest one.</p>
+                    <p>Ah, $SLT? You're curious, aren't you? But don't rush! We are <b>community-supported sloths</b> chilling in the most comfortable and green corner of the TON Blockchain. Our philosophy? <b>"Slow Down, and Stack Up Big!"</b> The chaotic <b>DEX</b> race is not for us. We prefer taking a long, peaceful <b>HODL</b> nap in our wallets. We are transparent, and we favor fair distribution. Because the strongest stance is the calmest one.</p>
                 </div>
             </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    Why does $SLT choose Slowness over Social Media Rush? <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>Oh, social media? Too noisy... Too fast... All those notifications, all that rushing... Not for us. The deepest secret of crypto is "<span class="creative-highlight">anonymity</span>". Besides, the best <span class="creative-highlight">viral marketing</span> is done completely organically by our loyal "<span class="creative-highlight">HODL army</span>". Our energy is focused on building a stable <span class="creative-highlight">community</span>, not stressing over keyboard wars. Look, we are slowly opening up! Our official <b>X (Twitter)</b> page is now active, providing a gentle hum of information. Our cozy <b>Telegram</b> community will follow gently later, when we're ready for more noise. Our slow and quiet progression is <span class="creative-highlight">NOT</span> a lack of effort; it's our <span class="creative-highlight">maximalist marketing strategy</span>. For us, "<span class="creative-highlight">sincerity and organic growth</span>" are far more valuable than temporary noise. On the contrary, we seek <span class="creative-highlight">maximalist comfort</span> and serenity. And this website? We are using this GitHub branch as an anonymous, quiet perch. We are grateful to <a href="https://github.com/" target="_blank" class="highlight">GitHub</a> for providing such a quiet, peaceful place for our slow movement.</p>
-                </div>
-            </div>
+        <div class="faq-item">
+    <div class="faq-question">
+        Why does $SLT choose Slowness over Social Media Rush? <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer">
+        <p>Oh, social media? Too noisy... Too fast... All those notifications, all that rushing... Not for us. The deepest secret of crypto is <b>anonymity</b>. Besides, the best <b>viral marketing</b> is done completely organically by our loyal <b>HODL army</b>. Our energy is focused on building a stable <b>community</b>, not stressing over keyboard wars. Look, we are slowly opening up! Our official <b>X (Twitter)</b> page is now active, providing a gentle hum of information. Our cozy <b>Telegram</b> community will follow gently later, when we're ready for more noise. Our slow and quiet progression is **NOT** a lack of effort; it's our maximalist marketing strategy. For us, **sincerity and organic growth** are far more valuable than temporary noise. On the contrary, we seek <b>maximalist comfort</b> and serenity. And this website? We are using this GitHub branch as an anonymous, quiet perch. We are grateful to <a href="https://github.com/" target="_blank" class="highlight">GitHub</a> for providing such a quiet, peaceful place for our slow movement.</p>
+    </div>
+</div>
             
             <div class="faq-item">
                 <div class="faq-question">
                     Will the $SLT token be listed on major exchanges (CEX)? <span class="faq-toggle">+
                 </div>
                 <div class="faq-answer">
-                    <p><span class="creative-highlight">Absolutely not.</span> Why? We don't want to enter the complicated and tiring world of major exchanges. We believe that <span class="creative-highlight">anonymity is power</span> and that <span class="creative-highlight">decentralization</span> is paramount. Our only goal is to stay peacefully on <span class="creative-highlight">DEXs</span> (Decentralized Exchanges) with high, healthy liquidity <span class="creative-highlight">for life</span>. For us, comfort comes before popularity.</p>
+                    <p><b>Absolutely not.</b> Why? We don't want to enter the complicated and tiring world of major exchanges. We believe that <b>anonymity is power</b> and that <b>decentralization</b> is paramount. Our only goal is to stay peacefully on <b>DEXs</b> (Decentralized Exchanges) with high, healthy liquidity <b>for life</b>. For us, comfort comes before popularity.</p>
                 </div>
             </div>
 
@@ -214,9 +919,9 @@
                     Will $SLT Token Make Us Rich? <span class="faq-toggle">+
                 </div>
                 <div class="faq-answer">
-                    <p>Look friends, let's be honest... The first and biggest goal of the $SLT Token is to offer a <span class="creative-highlight">peaceful experience</span> and a long-term <span class="creative-highlight">journey</span>. We want to progress slowly with our entire community and enjoy this experience to the fullest. Although we were created for fun, we certainly harbor <span class="creative-highlight">big market cap dreams</span>! However, never forget: We make <span class="creative-highlight">no claims</span> to anyone and absolutely <span class="creative-highlight">do not offer investment advice</span>.</p>
-                    <p>$SLT Tokens are <span class="creative-highlight">not securities</span> of any kind. They do not represent the right to vote, govern, or share profits or revenues of any entity. Furthermore, $SLT Tokens <span class="creative-highlight">do not represent ownership of any physical asset</span>.</p>
-                    <p style="font-weight: 600;">So, <span class="creative-highlight">slow down, stack up, and enjoy the ride!</span></p>
+                    <p>Look friends, let's be honest... The first and biggest goal of the $SLT Token is to offer a <b>peaceful experience</b> and a long-term <b>journey</b>. We want to progress slowly with our entire community and enjoy this experience to the fullest. Although we were created for fun, we certainly harbor <b>big market cap dreams</b>! However, never forget: We make **no claims** to anyone and absolutely <b>do not offer investment advice</b>.</p>
+                    <p>$SLT Tokens are **not securities** of any kind. They do not represent the right to vote, govern, or share profits or revenues of any entity. Furthermore, $SLT Tokens **do not represent ownership of any physical asset.**</p>
+                    <p style="font-weight: 600;">So, <b>slow down, stack up, and enjoy the ride!</b></p>
                 </div>
             </div>
 
@@ -225,7 +930,7 @@
                     How can I support Sloth Token's marketing/promotion efforts? <span class="faq-toggle">+</span>
                 </div>
                 <div class="faq-answer">
-                    <p>Look now... Don't get too tired. If you want to do something for us, find those cool, green visuals and videos we occasionally post on our site. Then, <span class="creative-highlight">slowly</span> share them on your social media. Don't rush, thinking, "I'll share it now and get rich immediately." <span class="creative-highlight">Consistency and peace</span> are what matter. Get the latest <span class="creative-highlight">meme materials</span> from our site—that's the trunk of our tree. Remember: <span class="creative-highlight">Your calmness is $SLT's greatest hype power.</span></p>
+                    <p>Look now... Don't get too tired. If you want to do something for us, find those cool, green visuals and videos we occasionally post on our site. Then, <b>slowly</b> share them on your social media. Don't rush, thinking, "I'll share it now and get rich immediately." Consistency and peace are what matter. Get the latest <b>meme materials</b> from our site—that's the trunk of our tree. Remember: <b>Your calmness is $SLT's greatest hype power.</b></p>
                 </div>
             </div>
 
@@ -238,7 +943,72 @@
     <p>THE SLOW MOVEMENT IS THE STRONGEST MOVEMENT.</p>
 </footer>
 
-<script src="scripts.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // --- TELİF HAKKI YILINI OTOMATİK GÜNCELLEME İŞLEVİ ---
+        const startYear = 2025;
+        const currentYear = new Date().getFullYear();
+        const copyrightElement = document.getElementById('copyrightYear');
+
+        if (copyrightElement) {
+            let yearText = startYear;
+            if (currentYear > startYear) {
+                // Başlangıç yılı 2025'ten büyükse, aralığı göster
+                yearText = `${startYear} - ${currentYear}`;
+            }
+            
+            // Telif hakkı metnini güncelle
+            copyrightElement.innerHTML = `&copy; ${yearText} SLOTH TOKEN. ALL RIGHTS RESERVED.`;
+        }
+
+        // --- KONTRA ADRESİ KOPYALAMA İŞLEVİ ---
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const contractAddress = document.getElementById('contractAddress').textContent;
+            const copyButton = document.getElementById('copyButton');
+            
+            navigator.clipboard.writeText(contractAddress).then(() => {
+                const originalText = copyButton.textContent;
+                copyButton.textContent = 'COPIED!';
+                copyButton.style.backgroundColor = '#4dfff7'; 
+
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                    copyButton.style.backgroundColor = '#00ffbf'; 
+                }, 1500);
+
+            }).catch(err => {
+                console.error('Copy failed: ', err);
+            });
+        });
+
+        // --- FAQ Accordion işlevi ---
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                faqItems.forEach(i => {
+                    if (i !== item && i.classList.contains('active')) {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    }
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                } else {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = null;
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
