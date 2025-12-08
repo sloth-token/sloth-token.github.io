@@ -237,48 +237,6 @@
         transform: translateY(-2px);
     }
 
-    /* NEW STATS SECTION STYLES (DESKTOP) */
-    .data-stats {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        /* İstatistik üstündeki boşluk ÇOK FAZLA ARTIRILDI (90px) */
-        margin-top: 90px; 
-        margin-bottom: 40px; 
-        padding: 0 10px;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .stat-item {
-        background: rgba(0, 255, 191, 0.05);
-        border: 1px solid rgba(0, 255, 191, 0.2);
-        padding: 15px 20px;
-        border-radius: 10px;
-        min-width: 150px;
-        text-align: center;
-        /* Masaüstünde 4 öğe için otomatik ayar */
-        flex: 1 1 20%; 
-        box-shadow: 0 0 10px rgba(0, 255, 191, 0.2);
-    }
-
-    .stat-value {
-        font-size: 24px;
-        font-weight: 800;
-        color: #00ffbf;
-        display: block;
-    }
-
-    .stat-label {
-        font-size: 14px;
-        font-weight: 500;
-        opacity: 0.7;
-        display: block;
-        margin-top: 5px;
-    }
-
     /* SECTION BASICS */
     .section-content {
         /* Bölüm dolgusu SIFIRLANDI */
@@ -654,30 +612,6 @@
             min-width: 100px; 
         }
         
-        /* NEW STATS SECTION MOBILE FIX */
-        .data-stats {
-            gap: 5px; 
-            padding: 0 10px; 
-            /* İstatistik üstündeki boşluk ÇOK FAZLA ARTIRILDI (90px) */
-            margin-top: 90px; 
-        }
-        .stat-item {
-            min-width: 70px; 
-            padding: 10px 5px;
-            flex-basis: calc(25% - 5px); 
-            box-sizing: border-box; 
-        }
-        .stat-value {
-            font-size: 18px; 
-        }
-        .stat-label {
-            font-size: 10px; 
-        }
-        .hero .data-stats {
-            padding: 0 10px; 
-        }
-        /* /NEW STATS SECTION MOBILE FIX */
-
         /* Section Padding Mobile (Bölüm dolgusu SIFIRLANDI) */
         .section-content, .manifesto-section {
             padding: 0px 0; 
@@ -848,25 +782,6 @@
         <a href="https://dexscreener.com/ton/" target="_blank" class="btn">CHART</a>
     </div>
     
-    <div class="data-stats">
-        
-        <div class="stat-item">
-            <span class="stat-value" id="holderCount">--</span>
-            <span class="stat-label">TOTAL HOLDERS</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-value" id="totalTx">--</span>
-            <span class="stat-label">TRANSACTIONS</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-value" id="liquidity">--</span>
-            <span class="stat-label">LIQUIDITY</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-value" id="currentPrice">--</span>
-            <span class="stat-label">PRICE (TON)</span>
-        </div>
-    </div>
 </section>
 
 <section class="manifesto-section" id="manifesto">
