@@ -107,17 +107,14 @@
     }
 
     /* ----------------------------------
-    // LANGUAGE SELECTOR STYLES (YENİ EKLENDİ VE KONUM GÜNCELLENDİ)
+    // LANGUAGE SELECTOR STYLES (YENİ KONUM)
     ----------------------------------- */
     .language-selector {
-        position: absolute; /* Body'ye göre konumlandır */
-        top: 120px; /* Navigasyonu (yaklaşık 80px) temizlemek ve $SLT başlığının üstüne gelmek için */
-        left: 50%;
-        transform: translateX(-50%);
+        /* Mutlak konumlandırma kaldırıldı, normal akışa alındı */
         z-index: 40; 
         text-align: center;
-        /* Menüye özel bir arka plan glow efekti */
         filter: drop-shadow(0 0 10px rgba(0, 255, 191, 0.4)); 
+        margin: 20px auto; /* Üstten ve alttan boşluk */
     }
 
     .lang-button {
@@ -135,7 +132,7 @@
         align-items: center;
         gap: 8px;
         backdrop-filter: blur(5px);
-        user-select: none; /* Metin seçimini engelle */
+        user-select: none; 
     }
 
     .lang-button:hover {
@@ -145,7 +142,7 @@
     }
     
     .lang-menu {
-        position: absolute;
+        position: absolute; /* Açılır menü için mutlak konumlandırma gerekli */
         top: 100%; 
         left: 50%;
         transform: translateX(-50%);
@@ -212,6 +209,25 @@
         color: #00ffbf;
         text-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
     }
+
+    /* SOCIAL ICONS */
+    .social-icons {
+        margin: 20px auto; 
+    }
+
+    .social-icons a {
+        color: #00ffbf;
+        font-size: 30px;
+        margin: 0 10px;
+        transition: color 0.3s, transform 0.3s;
+        text-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
+    }
+
+    .social-icons a:hover {
+        color: #4dfff7;
+        transform: scale(1.2);
+    }
+
 
     .hero p {
         font-size: 20px; 
@@ -285,7 +301,6 @@
     /* BUTTONS */
     .btns {
         margin-top: 35px;
-        /* Buton altındaki boşluk ÇOK FAZLA ARTIRILDI (70px) */
         margin-bottom: 70px; 
         display: flex;
         flex-wrap: wrap;
@@ -315,12 +330,10 @@
 
     /* SECTION BASICS */
     .section-content {
-        /* Bölüm dolgusu SIFIRLANDI */
         padding: 0px 0; 
         max-width: 100%;
         margin: 0 auto;
         text-align: center;
-        /* ANCHOR FIX: Kaydırma sırasında menü yüksekliği kadar boşluk bırakır */
         scroll-margin-top: 100px; 
     }
     
@@ -342,10 +355,8 @@
     
     /* Manifesto Section */
     .manifesto-section {
-        /* Bölüm dolgusu SIFIRLANDI */
         padding: 0px 0; 
         text-align: center;
-        /* ANCHOR FIX: Kaydırma sırasında menü yüksekliği kadar boşluk bırakır */
         scroll-margin-top: 100px; 
     }
 
@@ -655,7 +666,7 @@
 
         /* Dil Seçici Mobile Konum */
         .language-selector {
-            top: 80px; /* Navigasyonun altına konumla */
+            margin: 20px auto; /* Normal akışta yeterli boşluk */
         }
         
         /* Font and Headers */
@@ -679,11 +690,19 @@
              word-wrap: break-word;
              padding: 0 5px;
         }
+        
+        /* SOCIAL ICONS MOBILE */
+        .social-icons {
+            margin: 15px auto; 
+        }
+        .social-icons a {
+            font-size: 25px; 
+            margin: 0 8px;
+        }
 
         /* BUTTONS MOBILE LAYOUT */
         .btns {
             gap: 8px; 
-            /* Buton altındaki boşluk ÇOK FAZLA ARTIRILDI (70px) */
             margin-bottom: 70px; 
         }
         .btn {
@@ -693,10 +712,9 @@
             min-width: 100px; 
         }
         
-        /* Section Padding Mobile (Bölüm dolgusu SIFIRLANDI) */
+        /* Section Padding Mobile */
         .section-content, .manifesto-section {
             padding: 0px 0; 
-            /* Mobil menü de 60-70px civarı olduğu için 80px yeterli olur */
             scroll-margin-top: 80px; 
         }
         .content-wrapper {
@@ -837,18 +855,6 @@
     <a href="#faqs">FAQS</a>
 </nav>
 
-<div class="language-selector">
-    <button class="lang-button" onclick="toggleLangMenu(event)">
-        Change Language <i class="fas fa-globe"></i>
-    </button>
-    <div class="lang-menu" id="langMenu">
-        <a href="index.html">English</a>
-        <a href="ru.html">Русский</a>
-        <a href="az.html">Azərbaycanca</a>
-        <a href="es.html">Español</a>
-        <a href="tr.html">Türkçe</a>
-    </div>
-</div>
 <section class="hero" id="home">
     
     <h1>$SLT</h1>
@@ -856,7 +862,25 @@
     <img src="slttokenlogo.jpeg" class="logo" alt="Sloth Token Logo">
     
     <h2 class="sub-h1">SLOTH TOKEN</h2>
+
+    <div class="social-icons">
+        <a href="https://x.com/sloth_token0" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://github.com/sloth-token" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    </div> 
     
+    <div class="language-selector">
+        <button class="lang-button" onclick="toggleLangMenu(event)">
+            Change Language <i class="fas fa-globe"></i>
+        </button>
+        <div class="lang-menu" id="langMenu">
+            <a href="index.html">English</a>
+            <a href="ru.html">Русский</a>
+            <a href="az.html">Azərbaycanca</a>
+            <a href="es.html">Español</a>
+            <a href="tr.html">Türkçe</a>
+        </div>
+    </div>
     <div class="contract-container">
         <span class="contract-label">CONTRACT ADDRESS</span>
         <div class="contract-box">
@@ -1037,14 +1061,12 @@
 </footer>
 
 <script>
-    // --- LANGUAGE SELECTOR TOGGLE FUNCTION (GÜNCELLENDİ) ---
+    // --- LANGUAGE SELECTOR TOGGLE FUNCTION ---
 
     // Menüyü aç/kapat işlevi
     function toggleLangMenu(event) {
-        // Olayın yayılmasını durdurarak document click olayının hemen tetiklenmesini engeller.
         event.stopPropagation(); 
         const menu = document.getElementById('langMenu');
-        // Menünün görünürlüğünü değiştir
         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
 
@@ -1053,7 +1075,6 @@
         const selector = document.querySelector('.language-selector');
         const menu = document.getElementById('langMenu');
         
-        // Menü açıksa ve tıklama, menü seçicinin içinde DEĞİLSE, menüyü kapat.
         if (menu.style.display === 'block' && !selector.contains(event.target)) {
             menu.style.display = 'none';
         }
@@ -1070,11 +1091,9 @@
         if (copyrightElement) {
             let yearText = startYear;
             if (currentYear > startYear) {
-                // Başlangıç yılı 2025'ten büyükse, aralığı göster
                 yearText = `${startYear} - ${currentYear}`;
             }
             
-            // Telif hakkı metnini güncelle
             copyrightElement.innerHTML = `&copy; ${yearText} SLOTH TOKEN. ALL RIGHTS RESERVED.`;
         }
 
